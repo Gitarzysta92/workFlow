@@ -1,0 +1,30 @@
+{
+  "name": "workflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db": "C:\\\"Program Files\"\\MongoDB\\Server\\4.0\\bin\\mongod.exe --dbpath=\"d:\\work\\mongoDB\\user\"",
+    "server": "nodemon index.js",
+    "app": "npm-run-all --parallel db server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gitarzysta92/workFlow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gitarzysta92/workFlow/issues"
+  },
+  "homepage": "https://github.com/Gitarzysta92/workFlow#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "handlebars": "^4.0.12",
+    "mongodb": "^3.1.8"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
+  }
+}
