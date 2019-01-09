@@ -1,4 +1,3 @@
-const EventEmitter = require('events');
 const interfaceDirectory = require.resolve('./modulesInterface.js');
 const modulesInterface = require('./modulesInterface.js').setting;
 const Module = require('module');
@@ -16,15 +15,19 @@ const Module = require('module');
 
 
 
-class ModulesInitializer extends EventEmitter {
+class ModulesInitializer  {
 	constructor(filesList) {
-		super();
 		this.modules = [];
 		this.stack = [];
 		this.load(filesList);
-		//console.log(this.modules);
 	}
 
+	// Modules initializer API
+	getModule(query) {
+		return this.checkDependency(query, this.modules);
+	}
+
+	// Modules loader section
 	load(modulesArray) {
 		modulesArray.forEach(current => {
 			this.stack.push(require(current));
@@ -36,7 +39,7 @@ class ModulesInitializer extends EventEmitter {
 		const current = this.stack.shift();
 		if (current._dependencyQuery.length > 0){
 			current._dependencyQuery = current._dependencyQuery.filter(query => {
-				let dependency = this.checkDependency(query, this.stack);
+				let dependency = this.checkDependency(query, this.modules) || this.checkDependency(query, this.stack);
 				return this.loadDependency(current, dependency);
 			});
 			this.stack[this.stack.length] = current;

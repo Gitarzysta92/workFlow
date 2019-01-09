@@ -1,17 +1,21 @@
-const app = require('../core');
-	express = require('express'),
-	router = express.Router();
+// ------------------
+// Global router
+// ------------------
 
-app.execute(function(app) {
-	app.dir = path._dirname;
+// Setup express router
+const express = require('express');
+const router = express.Router();
+
+router.use(function timelog (req, res, next) {
+	console.log('Time', Date.now());
+	next();
 });
 
-console.log('asd');
 
 class GlobalRouter {
 	constructor() {
 		this.routes = [];
-		this.router = router;	
+		this.router = router;
 	}
 
 	register({method, endpoint, callback}) {
@@ -19,6 +23,11 @@ class GlobalRouter {
 		this.router[method](endpoint, callback);
 	}
 
+	getRouter() {
+		return this.router;
+	}
 }
+
+module.exports = GlobalRouter;
 
 

@@ -5,24 +5,6 @@ const dirMapper = require('./directoryMapper.js');
 
 
 
-const modules = {
-	mongoConfig: { 
-		name: 'mongo-config',
-		type: 'config',
-		data: 'object',
-		dependencies: [],
-		dir: ''
-	},
-	dirMapper: {
-		name: 'dir-mapper',
-		type: 'helper',
-		data: dirMapper,
-		dependencies: [],
-		dir: ''
-	}
-}
-
-
 class Manager {
 	constructor(appDir = defaultDirectory) {
 		this.directory = appDir;
@@ -31,18 +13,18 @@ class Manager {
 	}
 
 	async findModules(moduleIdentifier) {
-		const result = await this.mapper.getFilesList([moduleIdentifier]);
+		const result = await this.mapper.getFilesList(moduleIdentifier);
 		return result;
 	}
 
 	async registerModules(moduleIdentifier) {
 		const modulesList = await this.findModules(moduleIdentifier);
 		this.manager = new ModulesInit(modulesList);
-		//console.log(this.manager.modules);
+		return this.manager;
 	}
 }
 
 
-const manager = new Manager();
+module.exports = Manager;
 
-manager.registerModules('origin');
+

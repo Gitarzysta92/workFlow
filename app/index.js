@@ -1,19 +1,43 @@
-const moduleManager = require('./system/modules-manager');
+// ------------------------
+// Load main system modules
+// ------------------------
 
-/*
-this.root_dir = args[0];
-		this.modulesIgnorePattern = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md']
-		this.modules = new DirMap(this.root_dir, this.modulesIgnorePattern);
-		this.modules.getFilesList(['module-2']).then(result => console.log(result));
+// ###################
+// Load module manager
+const Manager = require('./system/modules-manager');
+const manager = new Manager();
 
-		this.modules.getSingleFile(['module-2.js']).then(result => console.log(result));
-	}
-*/
-const app = {
+// Register modules with given subname
+const modulesList = manager.registerModules(['.mod.','.config.']);
+
+// ###################
+// Load root application object
+const registerService = async function(service) {
+	const application = await modulesList.then(manager => manager.getModule({name: 'app.mod.js'}));
+	return application;
 }
 
+console.log(registerService().then(current => console.log(current)));
 
-//console.log(moduleManager);
+// ###################
+// Load global router
+const Router = require('./routes/globalRouter'); 
+const globalRouter = new Router();
+const routes = globalRouter.getRouter()
+
+// #################
+// Start http server
+const port = process.env.NODE_ENV === 'production' ? 80 : 3000;
+const startServer = async function(port) {
+	const server = await modulesList.then(manager => manager.getModule({name: 'server.mod.js'}));
+	server.published(port, routes);
+};
+
+startServer(port);
 
 
-module.exports.app = {}
+
+
+
+
+
