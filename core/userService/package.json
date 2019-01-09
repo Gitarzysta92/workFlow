@@ -1,4 +1,0 @@
-{
-    "name" : "userService",
-    "main" : "./index.module.js"
-}
