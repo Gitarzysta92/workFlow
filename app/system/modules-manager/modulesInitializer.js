@@ -27,6 +27,9 @@ class ModulesInitializer  {
 		return this.checkDependency(query, this.modules);
 	}
 
+	getModules(query) {
+		return this.modules.filter(current => this.checkDependency(query, [current]));
+	}
 	// Modules loader section
 	load(modulesArray) {
 		modulesArray.forEach(current => {

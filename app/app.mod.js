@@ -18,6 +18,10 @@ class Application {
 
 	}
 
+	set add(elem) {
+		this[elem.key] = elem;
+	}
+
 }
 
 const app = new Application();

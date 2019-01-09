@@ -8,7 +8,7 @@ class ModuleInterface {
 	constructor(fileName) {
 		this.id = this.uniqueId(10);
 		this.name = this.setName(fileName);
-		this.type = '' | 'all';
+		this.type = this.setType(fileName) || 'None';
 		this.published = {};
 		this.initDate = Date.now();
 		this.dependency = [];
@@ -46,8 +46,12 @@ class ModuleInterface {
 		 this.published.push(exported);
 	}
 
-	setType(typeName) {
-		this.type = typeName;
+	setType(fileName) {
+		const nameArr = fileName.split('.');
+		if (nameArr.length > 2) {
+			return nameArr[nameArr.length -2];	
+		}
+		return undefined;
 	}
 
 
