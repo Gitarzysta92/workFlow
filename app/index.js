@@ -27,7 +27,7 @@ registerService().then(app => app.property = 'aasd').then(app => console.log(app
 // 
 const Controller = require('./controller/mainController');
 const mainController = new Controller();
-const controllerInterface = mainController.run.bind(mainController);
+const controllerInterface = mainController.prepare.bind(mainController);
 
 
 // ###################

@@ -7,18 +7,15 @@
 const mod = new Mod(__filename);
 
 // Private
-
-const homarek = 'To jest homar';
-
-function homar(req, res, next) {
-	res.render(homarek);
+function walen(req, res, next) {
+	res.send('walen');
 }
 
 const route = {
-	name: 'Route',
+	name: 'User',
 	type: 'post',
 	endpoint: '/route',
-	controller: homar
+	controller: walen
 }; 
 
 // Public

@@ -8,12 +8,15 @@ class MainController {
 	constructor() {
 	}
 
-	run(routeObject) {
+	// sprawdzenie czy zostało wysłane zapytanie poprzez middleware przed wykonaniem obecnego 
+
+	prepare(routeObject) {
 		const route = routeObject;
-		return this.func.bind(route);
+		return this.execute.bind(route);
 	}
-	func(req, res, next) {
-		console.log('wejscie',this);
+	execute(req, res, next) {
+		console.log('wejscie', this);
+		this.forEach(current => current.controllers(req, res, next));
 	}
 }
 
