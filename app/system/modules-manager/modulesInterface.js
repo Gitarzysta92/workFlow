@@ -1,6 +1,9 @@
+const path = require('path');
+const defaultDirectory = path.dirname(require.main.filename);
+
+
 const modules = {
 	set list(list) {
-
 	},
 	list: []
 };
@@ -15,6 +18,7 @@ class ModuleInterface {
 		this._dependencyQuery = [];
 		this.constructor.saveInstance(this);
 		this.temp = {};
+		this.rootDirectory = defaultDirectory.split('\\').join('/');
 	}
 
 	static saveInstance(instance) {

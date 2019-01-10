@@ -7,8 +7,8 @@
 const mod = new Mod(__filename);
 
 // Private
-function testFunc() {
-
+function testFunc(req, res, next) {
+	res.render('home');
 }
 
 const route = {

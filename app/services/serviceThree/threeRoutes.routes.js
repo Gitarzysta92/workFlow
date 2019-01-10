@@ -8,13 +8,13 @@ const mod = new Mod(__filename);
 
 // Private
 function walen(req, res, next) {
-	res.send('walen');
+	//res.send('walen');
 }
 
 const route = {
-	name: 'User',
-	type: 'post',
-	endpoint: '/route',
+	name: 'middleware',
+	type: 'use',
+	endpoint: '/asd',
 	controller: walen
 }; 
 

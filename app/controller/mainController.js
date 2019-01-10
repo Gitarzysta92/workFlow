@@ -16,7 +16,7 @@ class MainController {
 	}
 	execute(req, res, next) {
 		console.log('wejscie', this);
-		this.forEach(current => current.controllers(req, res, next));
+		this.forEach(current => current.controllers(req, res));
 	}
 }
 

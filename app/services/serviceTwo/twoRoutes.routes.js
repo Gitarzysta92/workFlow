@@ -11,7 +11,7 @@ const mod = new Mod(__filename);
 const homarek = 'To jest homar';
 
 function homar(req, res, next) {
-	res.render(homarek);
+	res.send(homarek);
 }
 
 const route = {
