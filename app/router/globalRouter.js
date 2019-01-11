@@ -35,7 +35,9 @@ class GlobalRouter {
 	//
 	registerRoute(route) {
 		const preparedEndpoints = this.controller(route.controllers);
-		this.router[route.type](route.endpoint, preparedEndpoints);	
+		this.router[route.type](route.endpoint, preparedEndpoints);
+		//Log all registered routes
+		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');
 	}
 
 	//

@@ -1,4 +1,6 @@
-const db = require('../../core/modules').db_methods;
+//console.log(mod);
+
+/*const db = require('../../core/modules').db_methods;
 const session = require('./userSession').createSession;
 const userCollection = 'users';
 
@@ -37,4 +39,6 @@ async function authenticateUser({username, password}) {
 function compare(a, b) {
 	return a === b ? true : false;
 }
+*/
 
+module.exports = 'service';

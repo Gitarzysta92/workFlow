@@ -1,4 +1,4 @@
-const sessionList = [];
+/*const sessionList = [];
 
 module.exports.session = function(userID) {
 	const session = new UserSession(userID);
@@ -59,3 +59,7 @@ function uniqueId(length){
 
 	return id.join('');
 }
+*/
+
+
+module.exports = 'session';

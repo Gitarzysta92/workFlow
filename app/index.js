@@ -8,7 +8,7 @@
 const Manager = require('./system/modules-manager');
 const manager = new Manager();
 // Register modules with given subname
-const modulesType = ['.mod.','.config.','.routes.', '.mongo.'];
+const modulesType = ['.mod.','.config.','.routes.', '.mongo.', '.controller.'];
 const modulesList = manager.registerModules(modulesType);
 
 
