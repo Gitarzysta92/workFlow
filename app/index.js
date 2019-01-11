@@ -8,7 +8,7 @@
 const Manager = require('./system/modules-manager');
 const manager = new Manager();
 // Register modules with given subname
-const modulesType = ['.mod.','.config.','.routes.'];
+const modulesType = ['.mod.','.config.','.routes.', '.mongo.'];
 const modulesList = manager.registerModules(modulesType);
 
 
@@ -19,7 +19,7 @@ const registerService = async function(service) {
 	const application = await modulesList.then(manager => manager.getModule({name: 'app.mod.js'}));
 	return application;
 }
-registerService().then(app => app.property = 'aasd').then(app => console.log(app));
+//registerService().then(app => app.property = 'aasd').then(app => console.log(app));
 
 
 // ###################
@@ -33,7 +33,7 @@ const controllerInterface = mainController.prepare.bind(mainController);
 // ###################
 // Load and setting Global Router
 // 
-const Router = require('./routes/globalRouter'); 
+const Router = require('./router/globalRouter'); 
 const globalRouter = new Router();
 // get express router instance
 const router = globalRouter.getRouter()

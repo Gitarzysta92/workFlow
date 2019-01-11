@@ -5,7 +5,6 @@
 // Init module interface
 // and set it type
 const mod = new Mod(__filename);
-mod.setType('config');
 
 //load node modules dependencies
 const fs = require('fs');

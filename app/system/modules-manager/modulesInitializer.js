@@ -42,7 +42,11 @@ class ModulesInitializer  {
 		const current = this.stack.shift();
 		if (current._dependencyQuery.length > 0){
 			current._dependencyQuery = current._dependencyQuery.filter(query => {
-				let dependency = this.checkDependency(query, this.modules) || this.checkDependency(query, this.stack);
+				// check dependency is registered in this.modules
+				// !for circural dependencies should check in this.stack
+				let dependency = this.checkDependency(query, this.modules);
+				// when it is already registered remove dependencyQuery 
+				// to remove: loadDependency = false 
 				return this.loadDependency(current, dependency);
 			});
 			this.stack[this.stack.length] = current;
