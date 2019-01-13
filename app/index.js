@@ -31,6 +31,22 @@ const controllerInterface = mainController.prepare.bind(mainController);
 
 
 // ###################
+// Load and setting Main Controller
+// 
+const Authorizer = require('./system/request-auth');
+const auth = new Authorizer();
+
+
+// ###################
+// Get all routes
+// 
+const routesEndpoints = async function() {
+	const routeModules = await modulesList.then(manager => manager.getModules({type: 'routes'}));
+	return routeModules.map(current => current.published);
+}
+
+
+// ###################
 // Load and setting Global Router
 // 
 const Router = require('./router/globalRouter'); 
@@ -38,15 +54,12 @@ const globalRouter = new Router();
 // get express router instance
 const router = globalRouter.getRouter()
 
-const injectRoutes = async function(router) {
-	const routeModules = await modulesList.then(manager => manager.getModules({type: 'routes'}));
-	const routes = routeModules.map(current => current.published);
-	router.setRoutes(routes);
-}
+
 // Connect router with controller
 globalRouter.connect(controllerInterface);
 // Set all routes
-injectRoutes(globalRouter);
+routesEndpoints().then(routes => auth.wrap(routes))
+	.then(routes => globalRouter.getRouter(router));
 
 
 // #################
