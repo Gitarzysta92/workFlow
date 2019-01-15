@@ -22,6 +22,8 @@ class Manager {
 		this.manager = new ModulesInit(modulesList);
 		return this.manager;
 	}
+
+	
 }
 
 

@@ -30,6 +30,8 @@ class ModulesInitializer  {
 	getModules(query) {
 		return this.modules.filter(current => this.checkDependency(query, [current]));
 	}
+
+
 	// Modules loader section
 	load(modulesArray) {
 		modulesArray.forEach(current => {
@@ -84,6 +86,20 @@ class ModulesInitializer  {
 			moduleObject.addDependency(dependency);
 			return false;
 		}
+	}
+
+	flatArray(array, aggregator = []) {
+		const aggr = aggregator;
+		const toFlat = array;
+
+		toFlat.forEach(current => {
+			if (Array.isArray(current)) {
+				aggr.concat(flatArray(current, aggr));
+			} else {
+				aggr.push(current);
+			}
+		}); 
+		return aggr; 
 	}
 }
 

@@ -40,9 +40,25 @@ const auth = new Authorizer();
 // ###################
 // Get all routes
 // 
+
+function flatArray(array, aggregator = []) {
+		const aggr = aggregator;
+		const toFlat = array;
+
+		toFlat.forEach(current => {
+			if (Array.isArray(current)) {
+				aggr.concat(flatArray(current, aggr));
+			} else {
+				aggr.push(current);
+			}
+		}); 
+		return aggr; 
+	}
+
+
 const routesEndpoints = async function() {
 	const routeModules = await modulesList.then(manager => manager.getModules({type: 'routes'}));
-	return routeModules.map(current => current.published);
+	return flatArray(routeModules.map(current => current.published));
 }
 
 
@@ -58,8 +74,9 @@ const router = globalRouter.getRouter()
 // Connect router with controller
 globalRouter.connect(controllerInterface);
 // Set all routes
-routesEndpoints().then(routes => auth.wrap(routes))
-	.then(routes => globalRouter.getRouter(router));
+routesEndpoints()
+	.then(routes => auth.wrap(routes))
+	.then(routes => globalRouter.setRoutes(routes));
 
 
 // #################
