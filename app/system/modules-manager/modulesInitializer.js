@@ -27,10 +27,20 @@ class ModulesInitializer  {
 		return this.checkDependency(query, this.modules);
 	}
 
+
 	getModules(query) {
 		return this.modules.filter(current => this.checkDependency(query, [current]));
 	}
 
+
+	getPublished(query) {
+		return this.checkDependency(query, this.modules).published;
+	}
+
+	getAllPublished(query) {
+		const result = this.modules.filter(current => this.checkDependency(query, [current]));
+		return this.flatArray(result.map(current => current.published));
+	}
 
 	// Modules loader section
 	load(modulesArray) {
@@ -94,7 +104,7 @@ class ModulesInitializer  {
 
 		toFlat.forEach(current => {
 			if (Array.isArray(current)) {
-				aggr.concat(flatArray(current, aggr));
+				aggr.concat(this.flatArray(current, aggr));
 			} else {
 				aggr.push(current);
 			}

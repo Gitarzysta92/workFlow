@@ -5,7 +5,13 @@
 // Setup express router
 
 class MainController {
-	constructor() {
+	constructor(emiter) {
+		this.proceed = emiter;
+
+		this.proceed.on('/home', (args, req, res) => {
+  			res.send('dupa');
+		});
+
 	}
 
 	// sprawdzenie czy zostało wysłane zapytanie poprzez middleware przed wykonaniem obecnego 

@@ -13,29 +13,33 @@ router.use(function timelog (req, res, next) {
 
 
 class GlobalRouter {
-	constructor() {
+	constructor(emiter) {
 		this.routes = [];
 		this.router = router;
-		this.controller = {}; 
+		this.httpRequest = emiter;
+
 	}
 	// pass express router module
-	getRouter() {
+	getRouterInstance() {
 		return this.router;
 	}
 
-	// reference to controller
-	connect(controllerObj) {
-		this.controller = controllerObj;
-	}
+	prepareEmitter(eventName, subject) {
+		return function(req, res) {
+			const event = eventName;
+			const args = subject;
+			this.httpRequest.emit(event, args, req, res);
 
+		}.bind(this);
+	}
 	//
 	// add single route
 	// input: route object 
 	// set controller execute function
 	//
 	registerRoute(route) {
-		const preparedEndpoints = this.controller(route.controllers);
-		this.router[route.type](route.endpoint, preparedEndpoints);
+		const preparedEmitter = this.prepareEmitter(route.endpoint, route.type);
+		this.router[route.type](route.endpoint, preparedEmitter);
 		//Log all registered routes
 		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');
 	}
