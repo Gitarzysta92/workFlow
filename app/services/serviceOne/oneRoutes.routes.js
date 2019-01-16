@@ -15,6 +15,7 @@ const route = {
 	name: 'home',
 	type: 'get',
 	endpoint: '/home',
+	authFlag: '3'
 	controller: testFunc
 }; 
 
