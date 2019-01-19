@@ -8,7 +8,8 @@ class MainController {
 	constructor(emiter) {
 		this.proceed = emiter;
 
-		this.proceed.on('/home', (args, req, res) => {
+		this.proceed.on('http-request', (args, req, res, next) => {
+			console.log(args);
   			res.send('dupa');
 		});
 

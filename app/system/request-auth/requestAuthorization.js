@@ -3,18 +3,12 @@ class Authorizer {
 		this.accessModel = {}
 	}
 
-	wrap(routesList) {
+	setAuthorization(routesList) {
 		const authRoutes = [];
-		const wrapped = routesList.map(current => {
-			const toWrap = current.controller
-			current.controller = function() {
-				return toWrap;
-			}
+		const wrapped = routesList.forEach(current => {
 			authRoutes.push(this.getAuthRoute(current));
-			return current;
 		});
-
-		return wrapped.concat(authRoutes);
+		return routesList.concat(authRoutes);
 	}
 
 	getAuthRoute(route) {
@@ -32,9 +26,17 @@ class Authorizer {
 
 	middlewareAuth() {
 		//authorization method
+		console.log('Time', Date.now());
+		next();
 	}
 
 }
+
+
+
+/*
+
+*/
 
 
 module.exports = Authorizer;

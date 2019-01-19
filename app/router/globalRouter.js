@@ -6,17 +6,13 @@
 const express = require('express');
 const router = express.Router();
 
-router.use(function timelog (req, res, next) {
-	console.log('Time', Date.now());
-	next();
-});
-
 
 class GlobalRouter {
 	constructor(emiter) {
 		this.routes = [];
 		this.router = router;
 		this.httpRequest = emiter;
+		this.event = 'http-request';
 
 	}
 	// pass express router module
@@ -24,12 +20,10 @@ class GlobalRouter {
 		return this.router;
 	}
 
-	prepareEmitter(eventName, subject) {
-		return function(req, res) {
-			const event = eventName;
-			const args = subject;
-			this.httpRequest.emit(event, args, req, res);
-
+	prepareEmitter(subject) {
+		return function(req, res, next) {
+			this.httpRequest.emit(this.event, subject, req, res, next);
+			//next();
 		}.bind(this);
 	}
 	//
@@ -38,8 +32,7 @@ class GlobalRouter {
 	// set controller execute function
 	//
 	registerRoute(route) {
-		const preparedEmitter = this.prepareEmitter(route.endpoint, route.type);
-		this.router[route.type](route.endpoint, preparedEmitter);
+		this.router[route.type](route.endpoint, this.prepareEmitter(route.controller));
 		//Log all registered routes
 		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');
 	}
@@ -79,25 +72,20 @@ class GlobalRouter {
 	// name:, type:, endpoint:, content:
 	//
 	setRoute(array, route) {
-		const controllerObject = {
-			name: route.name,
-			controllers: route.controller
-		}
-
 		const result = array.find(current => {
 			if (current.type === route.type && 
 				current.endpoint === route.endpoint) return true;
 		});
 
 		if (result) {
-			result.controllers.push(controllerObject)
-			return null;
+			console.log('Route with given endpoint already exist');
+			return;
 		}
 
 		const routeObject = {
 			type: route.type,
 			endpoint: route.endpoint,
-			controllers: [controllerObject]
+			controller: route.controller
 		}
 		array.push(routeObject);
 	}

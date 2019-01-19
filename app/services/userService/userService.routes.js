@@ -6,9 +6,10 @@
 // and set it type
 const mod = new Mod(__filename);
 
+
 //load node modules dependencies
 const controller = require('./userService.controller.js').router;
-console.log(controller);
+
 
 // Private
 const routes = [
@@ -27,6 +28,9 @@ const routes = [
 ]
 
 // Public
-mod.publish(() => routes);
+mod.publish(() => {
+
+	return routes
+});
 module.exports = mod;
 
