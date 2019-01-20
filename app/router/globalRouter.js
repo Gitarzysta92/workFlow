@@ -3,14 +3,14 @@
 // ------------------
 
 // Setup express router
-const express = require('express');
-const router = express.Router();
+
 
 
 class GlobalRouter {
-	constructor(emiter) {
+	constructor(emiter, express) {
+		console.log(express)
 		this.routes = [];
-		this.router = router;
+		this.router = express.Router();
 		this.httpRequest = emiter;
 		this.event = 'http-request';
 
@@ -22,8 +22,7 @@ class GlobalRouter {
 
 	prepareEmitter(subject) {
 		return function(req, res, next) {
-			this.httpRequest.emit(this.event, subject, req, res, next);
-			//next();
+			this.httpRequest.emit(this.event, subject, req, res, next);	
 		}.bind(this);
 	}
 	//

@@ -9,8 +9,11 @@ class MainController {
 		this.proceed = emiter;
 
 		this.proceed.on('http-request', (args, req, res, next) => {
-			args();
-  			res.send('dupa');
+			if (args.constructor.name === 'AsyncFunction') {
+				args(req, res).catch(next);	
+			} else {
+
+			}
 		});
 
 	}

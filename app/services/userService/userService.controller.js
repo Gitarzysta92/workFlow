@@ -31,9 +31,9 @@ function authenticateUser(req, res, next) {
 
 // Public
 mod.publish(async function(mongoCRUD) {
-	const crudApi = await mongoCRUD;
+	//const crudApi = await mongoCRUD;
 	//sample database request
-	console.log(await crudApi.getSingle({username: 'log'}, 'users'));
+	//console.log(await crudApi.getSingle({username: 'log'}, 'users'));
 });
 module.exports = mod;
 module.exports.router = 'ptaszek';

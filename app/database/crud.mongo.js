@@ -30,7 +30,7 @@ mod.publish(async function(mongoInstance) {
 		// Get first mached item from given collection
 		// input: query key object
 		//
-		getSingle: function(key, collectionName) {
+		getSingle: function(collectionName, key) {
 			return database.collection(collectionName).findOne(key);
 		},
 		//
