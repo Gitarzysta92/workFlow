@@ -32,7 +32,11 @@ class GlobalRouter {
 	// set controller execute function
 	//
 	registerRoute(route) {
-		this.router[route.type](route.endpoint, this.prepareEmitter(route.controller));
+		if (route.endpoint === undefined) {
+			this.router[route.type](this.prepareEmitter(route.controller));
+		} else {
+			this.router[route.type](route.endpoint, this.prepareEmitter(route.controller));	
+		}
 		//Log all registered routes
 		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');
 	}

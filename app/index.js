@@ -23,9 +23,14 @@ const Controller = require('./controller/mainController');
 app.globalController = new Controller(app.eventsEmitter);
 
 
-// Load and setting Main Controller
-const Authorizer = require('./system/request-auth');
-app.httpAuthorizer = new Authorizer();
+// Load and setting Http request authorizer
+const HttpAuthorizer = require('./system/request-authorization');
+app.httpAuthorizer = new HttpAuthorizer();
+
+
+// Load client stats and authorization
+const ClientAuthorizer = require('./system/client-authorization');
+app.clientAuthorizer = new ClientAuthorizer();
 
 
 // Load and setting Global Router
@@ -36,6 +41,7 @@ app.globalRouter = new Router(app.eventsEmitter);
 // Setup routes
 let routes = modulesList.getAllPublished({type: 'routes'});
 routes = app.httpAuthorizer.setAuthorization(routes);
+routes = app.clientAuthorizer.setAuthorization(routes);
 app.globalRouter.setRoutes(routes);
 
 

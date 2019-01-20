@@ -9,7 +9,7 @@ class MainController {
 		this.proceed = emiter;
 
 		this.proceed.on('http-request', (args, req, res, next) => {
-			console.log(args);
+			args();
   			res.send('dupa');
 		});
 
@@ -23,7 +23,7 @@ class MainController {
 	}
 	execute(req, res, next) {
 		console.log('wejscie', this);
-		this.forEach(current => current.controllers(req, res));
+		this.forEach(current => current.controllers(req, res));s
 	}
 }
 

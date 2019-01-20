@@ -1,4 +1,4 @@
-class Authorizer {
+class RequestAuthorizer {
 	constructor() {
 		this.accessModel = {}
 	}
@@ -8,7 +8,7 @@ class Authorizer {
 		const wrapped = routesList.forEach(current => {
 			authRoutes.push(this.getAuthRoute(current));
 		});
-		return routesList.concat(authRoutes);
+		return authRoutes.concat(routesList);
 	}
 
 	getAuthRoute(route) {
@@ -32,13 +32,6 @@ class Authorizer {
 
 }
 
-
-
-/*
-
-*/
-
-
-module.exports = Authorizer;
+module.exports = RequestAuthorizer;
 
 
