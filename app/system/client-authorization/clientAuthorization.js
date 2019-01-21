@@ -1,5 +1,11 @@
 const Client = require('./clientWrapper');
 
+class UnauthorizedError extends Error {
+  constructor(message) {
+    super(message); // (1)
+    this.name = "UnauthorizedError"; // (2)
+  }
+}
 
 class ClientAuthorizer {
 	constructor(options) {
@@ -59,7 +65,7 @@ class ClientAuthorizer {
 
 		const clientToken = await this.getClientApp({token});
 
-		if (clientToken === null) throw new Error('UnauthorizedError');  
+		if (clientToken === null) throw new UnauthorizedError();  
 		return clientToken; 
 	}
 
