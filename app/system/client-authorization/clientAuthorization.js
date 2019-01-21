@@ -15,8 +15,7 @@ class ClientAuthorizer {
 
 	}
 
-//static addClient
-
+	//static addClient
 	setAuthorization(routesList) {
 		const route = {
 			name: 'clientAuthorizer',
@@ -30,14 +29,11 @@ class ClientAuthorizer {
 	async authorizeClient(req, res, next) {
 		const client = this.isConnected(req.headers);
 
-		//console.log(req.headers)
-
 		// check is client establish connection 
 		if (client) next();
 			
 		// check is client have registered aplication key
 		// if have push it to connected list
-	
 		return this.checkApiKey(req.headers.appkey).then(token => {
 			console.log(token);
 			if (token.host === req.headers.host) {

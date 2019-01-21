@@ -8,7 +8,6 @@
 
 class GlobalRouter {
 	constructor(emiter, express) {
-		console.log(express)
 		this.routes = [];
 		this.router = express.Router();
 		this.httpRequest = emiter;
@@ -81,7 +80,7 @@ class GlobalRouter {
 		});
 
 		if (result) {
-			console.log('Route with given endpoint already exist');
+			console.log('Route with given endpoint already exist', result.endpoint);
 			return;
 		}
 

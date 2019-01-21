@@ -5,8 +5,6 @@
 // ###################
 // Load synchronous module manager
 //
-
-
 const Manager = require('./system/modules-manager').sync;
 const manager = new Manager();
 
@@ -46,18 +44,16 @@ const Router = require('./router/globalRouter');
 app.globalRouter = new Router(app.eventsEmitter, app.express);
 
 
-
 // Setup routes
 let routes = modulesList.getAllPublished({type: 'routes'});
 routes = app.httpAuthorizer.setAuthorization(routes);
 routes = app.clientAuthorizer.setAuthorization(routes);
 app.globalRouter.setRoutes(routes);
 
+
 // Load and setting Global Router
 const errorHandler = require('./utilities/errorHandler');
 const expressInstance = app.express();
-
-
 
 
 // Start http server
@@ -66,6 +62,4 @@ const server = modulesList.getPublished({name: 'server.mod.js'});
 
 server(port, app.globalRouter.getRouterInstance(), expressInstance);
 
-
 expressInstance.use(errorHandler);
-console.log(expressInstance);
