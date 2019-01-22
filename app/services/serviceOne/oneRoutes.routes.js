@@ -8,7 +8,7 @@ const mod = new Mod(__filename);
 
 // Private
 function testFunc(req, res, next) {
-	res.render('home');
+	res.send('home');
 }
 
 const route = {
@@ -16,7 +16,7 @@ const route = {
 	type: 'get',
 	endpoint: '/home',
 	authFlag: '3',
-	controller: 'testFunc'
+	controller: testFunc
 }; 
 
 // Public

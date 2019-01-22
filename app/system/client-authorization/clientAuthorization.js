@@ -1,11 +1,13 @@
 const Client = require('./clientWrapper');
 
+
 class UnauthorizedError extends Error {
   constructor(message) {
     super(message); // (1)
     this.name = "UnauthorizedError"; // (2)
   }
 }
+
 
 class ClientAuthorizer {
 	constructor(options) {
@@ -34,35 +36,37 @@ class ClientAuthorizer {
 			
 		// check is client have registered aplication key
 		// if have push it to connected list
-		return this.checkApiKey(req.headers.appkey).then(token => {
-			console.log(token);
+		return this.checkApiKey(req.headers.appkey)
+		.then(token => { 
+			if (!token) throw new UnauthorizedError('Your App key is not valid');
+			return token;
+		})
+		.then(token => {
 			if (token.host === req.headers.host) {
-				resolve(
-					this.clientsList.push(new Client(req.headers))
-				);	
+				this.clientsList.push(new Client(req.headers));
+				next();
 			} else {
-				reject(
-					//new UnauthorizedError('UnauthorizedError')
-				) 
+				throw new UnauthorizedError('Your host is not authorized'); 
 			}
 		})
 	}
 
 	isConnected(headers) {
 		if (headers.host && headers.appkey) {
-			this.clientsList.find(current => {
+			return this.clientsList.find(current => {
 				if ( current.host === headers.host && current.appkey === headers.appkey ) return current;
 			})
 		}
 	}
 
 	async checkApiKey(token) {
-		if (!token) return {};
-
-		const clientToken = await this.getClientApp({token});
-
-		if (clientToken === null) throw new UnauthorizedError();  
-		return clientToken; 
+		if (!token) return null;
+	 	//return await this.getClientApp({token}); 
+	 	return {
+	 		appkey: 'rootkey',
+	 		host: 'localhost:3000'
+	 	}
+	 	//return null;
 	}
 
 	async getClientApp(searchKey){

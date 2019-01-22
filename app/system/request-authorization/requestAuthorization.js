@@ -1,6 +1,30 @@
+const first = [
+	{
+		name: 'home',
+		type: 'get',
+		endpoint: '/home',
+	}
+]
+
+// routes permissions with inherit
+
+const second = [
+	{
+
+	},
+...first]
+
+
+const third = [
+	{
+
+	},
+...second]
+
+
 class RequestAuthorizer {
 	constructor() {
-		this.accessModel = {}
+		this.accessModel = [];
 	}
 
 	setAuthorization(routesList) {
@@ -24,7 +48,15 @@ class RequestAuthorizer {
 		} 
 	}
 
-	middlewareAuth() {
+	middlewareAuth(req, res, next) {
+		//check user session token
+
+		//get user session obj
+
+		//Check is user have permissions for given route
+
+		//Pass
+
 		//authorization method
 		console.log('Time', Date.now());
 		next();

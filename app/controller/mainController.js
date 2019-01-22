@@ -10,9 +10,9 @@ class MainController {
 
 		this.proceed.on('http-request', (args, req, res, next) => {
 			if (args.constructor.name === 'AsyncFunction') {
-				args(req, res).catch(next);	
+				args(req, res, next).catch(next);	
 			} else {
-
+				args(req, res, next);
 			}
 		});
 
