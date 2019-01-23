@@ -8,7 +8,7 @@ const mod = new Mod(__filename);
 
 
 //load node modules dependencies
-const controller = require('./userService.controller.js').router;
+const service = require('./userService.controller.js').methods;
 
 
 // Private
@@ -17,19 +17,27 @@ const routes = [
 		name: 'get-user',
 		type: 'get',
 		endpoint: '/user',
-		controller: 'testFunc'
+		controller: service.getUser
 	},
 	{
 		name: 'register-user',
 		type: 'post',
 		endpoint: '/user',
-		controller: 'testFunc'
+		controller: service.registerUser
+	},
+	{
+		name: 'register-user',
+		type: 'get',
+		endpoint: '/user/:id',
+		controller: service.authenticateUser
 	}
 ]
 
+
+console.log(service);
+
 // Public
 mod.publish(() => {
-
 	return routes
 });
 module.exports = mod;

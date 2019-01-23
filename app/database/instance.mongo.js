@@ -10,7 +10,7 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 //load module manager dependencies
-mod.expect({name: 'mongo.config.js'})
+mod.expect({name: 'config.mongo.js'})
 
 // Private
 const getClient = function(url) {

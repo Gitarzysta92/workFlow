@@ -21,6 +21,7 @@ class GlobalRouter {
 
 	prepareEmitter(subject) {
 		return function(req, res, next) {
+			console.log(res);
 			this.httpRequest.emit(this.event, subject, req, res, next);	
 		}.bind(this);
 	}

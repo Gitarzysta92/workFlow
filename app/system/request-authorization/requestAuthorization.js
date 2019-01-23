@@ -1,8 +1,7 @@
 const first = [
 	{
-		name: 'home',
 		type: 'get',
-		endpoint: '/home',
+		endpoint: '/home'
 	}
 ]
 

@@ -1,5 +1,6 @@
 const path = require('path');
 const defaultDirectory = path.dirname(require.main.filename);
+const interfaceDependency = require('./modulesInitializer').defaultDependency;
 const ModulesInit = require('./modulesInitializer');
 const dirMapper = require('./directoryMapper.js');
 const dirMapperSync = require('./directoryMapperSync.js');
@@ -11,6 +12,7 @@ class Manager {
 		this.directory = appDir;
 		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md'];
 		this.mapper = {};
+		
 	}
 
 	async findModules(moduleIdentifier) {
@@ -31,6 +33,11 @@ class ManagerSync {
 		this.directory = appDir;
 		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md'];
 		this.mapper = new dirMapperSync(this.directory, this.mapperIgnore);
+		this.interf = interfaceDependency;
+	}
+
+	setDependencies(dependencies) {
+		this.interf(dependencies);
 	}
 
 	findModules(moduleIdentifier) {

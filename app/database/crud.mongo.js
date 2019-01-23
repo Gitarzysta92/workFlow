@@ -38,7 +38,7 @@ mod.publish(async function(mongoInstance) {
 		// input: array shema object items
 		//
 		insertAll: function(items, collectionName) {
-			return database.collection(collectionName).insertOne(item);
+			return database.collection(collectionName).insert(item);
 		},
 		//
 		// Insert single item to given collection

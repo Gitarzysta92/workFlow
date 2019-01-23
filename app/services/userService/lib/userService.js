@@ -1,7 +1,5 @@
-//console.log(mod);
-
-/*const db = require('../../core/modules').db_methods;
-const session = require('./userSession').createSession;
+//const session = require('./userSession').createSession;
+const db = Mod.db.inst;
 const userCollection = 'users';
 
 module.exports = {
@@ -19,9 +17,9 @@ async function getUser(username) {
 // example { login: string, password: string }
 
 // TO DO - hash password before database insert
-async function registerUser(userParam) {
-	const result = db.insertSingle(userParam, userCollection);
-	return result;
+async function registerUser({username, password}) {
+	const result = await db;
+	return result.insertSingle({username, password}, userCollection);
 }
 
 
@@ -39,6 +37,4 @@ async function authenticateUser({username, password}) {
 function compare(a, b) {
 	return a === b ? true : false;
 }
-*/
 
-module.exports = 'service';

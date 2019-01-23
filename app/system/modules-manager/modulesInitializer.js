@@ -1,5 +1,5 @@
 const interfaceDirectory = require.resolve('./modulesInterface.js');
-const modulesInterface = require('./modulesInterface.js').setting;
+const setDependency = require('./modulesInterface.js').dependency;
 const Module = require('module');
 
 
@@ -115,3 +115,6 @@ class ModulesInitializer  {
 
 
 module.exports = ModulesInitializer;
+module.exports.defaultDependency = function(dependency) {
+	setDependency(dependency);
+}
