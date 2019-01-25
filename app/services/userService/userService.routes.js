@@ -33,9 +33,6 @@ const routes = [
 	}
 ]
 
-
-console.log(service);
-
 // Public
 mod.publish(() => {
 	return routes

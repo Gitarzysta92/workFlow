@@ -1,0 +1,4 @@
+{
+    "name" : "endpoint-auth",
+    "main" : "./endpointsAuthorization.js"
+}

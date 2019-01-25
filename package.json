@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "db": "C:\\\"Program Files\"\\MongoDB\\Server\\4.0\\bin\\mongod.exe --dbpath=\"d:\\work\\mongoDB\\user\"",
-    "server": "nodemon index.js",
+    "server": "nodemon --inspect index.js",
     "app": "npm-run-all --parallel db server"
   },
   "repository": {

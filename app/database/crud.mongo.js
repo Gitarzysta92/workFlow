@@ -23,7 +23,7 @@ mod.publish(async function(mongoInstance) {
 		// Gat all mached items from given collection
 		// input: query key object
 		//
-		getAll: function(key, collectionName) {
+		getAll: function(collectionName, key ) {
 			return database.collection(collectionName).find(key);
 		},
 		//
@@ -37,15 +37,21 @@ mod.publish(async function(mongoInstance) {
 		// Insert all items to given collection
 		// input: array shema object items
 		//
-		insertAll: function(items, collectionName) {
+		insertAll: function(collectionName, items) {
 			return database.collection(collectionName).insert(item);
 		},
 		//
 		// Insert single item to given collection
 		// input: item shema object
 		//
-		insertSingle: function(item, collectionName) {
+		insertSingle: function(collectionName, item) {
 			return database.collection(collectionName).insertOne(item);
+		},
+
+		updateSingleIfExists: function(collectionName, filter, item) {
+			return database.collection(collectionName).updateOne(filter, {
+				$set: item
+			}, {upsert: true});
 		},
 
 		// update()

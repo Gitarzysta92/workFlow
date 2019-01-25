@@ -11,7 +11,7 @@ const Application = require('./system');
 const app = new Application();
 
 
-app.filesManager.setDependencies(app.database);
+app.filesManager.setDependencies(app);
 // Register modules with given subname
 const type = ['.mod.','.config.','.routes.','.controller.'];
 const modulesList = app.filesManager.registerModules(type);
@@ -24,7 +24,7 @@ const mainController = new Controller(app.eventsEmitter);
 
 // Load and setting Global Router
 const Router = require('./router/globalRouter'); 
-const globalRouter = new Router(app.eventsEmitter, express);
+const globalRouter = new Router(mainController.wrapper, express);
 
 
 // Setup routes

@@ -1,4 +1,0 @@
-{
-    "name" : "request-auth",
-    "main" : "./requestAuthorization.js"
-}

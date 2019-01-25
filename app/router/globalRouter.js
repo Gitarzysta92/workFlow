@@ -7,10 +7,10 @@
 
 
 class GlobalRouter {
-	constructor(emiter, express) {
+	constructor(controler, express) {
 		this.routes = [];
 		this.router = express.Router();
-		this.httpRequest = emiter;
+		this.pepareController = controler;
 		this.event = 'http-request';
 
 	}
@@ -19,22 +19,18 @@ class GlobalRouter {
 		return this.router;
 	}
 
-	prepareEmitter(subject) {
-		return function(req, res, next) {
-			console.log(res);
-			this.httpRequest.emit(this.event, subject, req, res, next);	
-		}.bind(this);
-	}
+
 	//
 	// add single route
 	// input: route object 
 	// set controller execute function
 	//
 	registerRoute(route) {
+	
 		if (route.endpoint === undefined) {
-			this.router[route.type](this.prepareEmitter(route.controller));
+			this.router[route.type](this.pepareController(route.controller));
 		} else {
-			this.router[route.type](route.endpoint, this.prepareEmitter(route.controller));	
+			this.router[route.type](route.endpoint, this.pepareController(route.controller));	
 		}
 		//Log all registered routes
 		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');

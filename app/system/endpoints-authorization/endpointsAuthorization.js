@@ -1,3 +1,7 @@
+const AccessModel = require('./accessModel');
+
+
+
 const first = [
 	{
 		type: 'get',
@@ -21,7 +25,7 @@ const third = [
 ...second]
 
 
-class RequestAuthorizer {
+class EndpointsAuthorizer {
 	constructor() {
 		this.accessModel = [];
 	}
@@ -45,6 +49,10 @@ class RequestAuthorizer {
 		} else {
 			//throw an error
 		} 
+	} 
+
+	addAccessModel() {
+		const model = new AccessModel();
 	}
 
 	middlewareAuth(req, res, next) {
@@ -63,6 +71,6 @@ class RequestAuthorizer {
 
 }
 
-module.exports = RequestAuthorizer;
+module.exports = EndpointsAuthorizer;
 
 

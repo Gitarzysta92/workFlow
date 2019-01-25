@@ -11,10 +11,15 @@ class UnauthorizedError extends Error {
 
 class ClientAuthorizer {
 	constructor(options) {
-		this.dbInstance = options.db || false;
+
+		this.dbInstance = options || false;
 		this.clientsList = [];
 		this.collection = 'clientApps';
+		this.addTrustedClient({
 
+	 		appkey: 'rootkey',
+	 		host: 'localhost:3000'
+	 	});
 	}
 
 	//static addClient
@@ -31,16 +36,22 @@ class ClientAuthorizer {
 	async authorizeClient(req, res, next) {
 		const client = this.isConnected(req.headers);
 
-		// check is client establish connection 
-		if (client) next();
-			
+		// check is client established any connection already 
+		if (client) {
+			client.request = 'asd';
+			next();
+			return;
+		}	
 		// check is client have registered aplication key
-		// if have push it to connected list
-		return this.checkApiKey(req.headers.appkey)
+		// if key are registered pass token to check host function 
+		await this.checkApiKey(req.headers.appkey)
 		.then(token => { 
+
 			if (!token) throw new UnauthorizedError('Your App key is not valid');
 			return token;
 		})
+		// check is given apiKey has assigned client host
+		// if has not throw exception 
 		.then(token => {
 			if (token.host === req.headers.host) {
 				this.clientsList.push(new Client(req.headers));
@@ -61,12 +72,18 @@ class ClientAuthorizer {
 
 	async checkApiKey(token) {
 		if (!token) return null;
-	 	//return await this.getClientApp({token}); 
-	 	return {
-	 		appkey: 'rootkey',
-	 		host: 'localhost:3000'
-	 	}
-	 	//return null;
+	 	return await this.getClientApp({ appkey: token });
+	}
+
+	async addTrustedClient(clientObject) {
+		return await this.setClientApp(clientObject);
+	}
+
+	async setClientApp(client) {
+		const db = await this.dbInstance;
+		return db.updateSingleIfExists(this.collection, {
+			'appkey': client.appkey
+		}, client);
 	}
 
 	async getClientApp(searchKey){

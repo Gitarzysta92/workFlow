@@ -8,25 +8,25 @@ class MainController {
 	constructor(emiter) {
 		this.proceed = emiter;
 
-		this.proceed.on('http-request', (args, req, res, next) => {
-			if (args.constructor.name === 'AsyncFunction') {
-				args(req, res, next).catch(next);	
-			} else {
-				args(req, res, next);
-			}
-		});
 
 	}
 
 	// sprawdzenie czy zostało wysłane zapytanie poprzez middleware przed wykonaniem obecnego 
 
-	prepare(routeObject) {
-		const route = routeObject;
-		return this.execute.bind(route);
-	}
-	execute(req, res, next) {
-		console.log('wejscie', this);
-		this.forEach(current => current.controllers(req, res));s
+	wrapper(func) {
+		return function(req, res, next) {
+			const controller = func;
+			if (controller.constructor.name === 'AsyncFunction') {
+				controller(req, res, next).catch(next);	
+			} else {
+				try {
+					controller(req, res, next);
+				} catch(err) {
+					next(err);
+				}
+				
+			}
+		}
 	}
 }
 

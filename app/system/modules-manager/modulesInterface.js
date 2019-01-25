@@ -1,9 +1,9 @@
 const path = require('path');
 const defaultDirectory = path.dirname(require.main.filename);
 
-const database = {
-	set instance(db) {
-		this.inst = db;
+const list = {
+	set add(app) {
+		this.app = app;
 	}
 }
 
@@ -24,7 +24,6 @@ class ModuleInterface {
 		this.constructor.saveInstance(this);
 		this.temp = {};
 		this.rootDirectory = defaultDirectory.split('\\').join('/');
-		this.db = database.inst;
 	}
 
 	static saveInstance(instance) {
@@ -99,8 +98,8 @@ class ModuleInterface {
 		return id.join('');
 	}
 }
-
-module.exports = ModuleInterface;
+module.exports = list;
+module.exports.mod = ModuleInterface;
 
 module.exports.setting = function(setup) {
 	modules.list = setup;
@@ -108,7 +107,7 @@ module.exports.setting = function(setup) {
 }
 
 module.exports.dependency = function(db) {
-	database.instance = db;
+	list.add = db;
+
 }
 
-module.exports.db = database;

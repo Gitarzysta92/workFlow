@@ -1,5 +1,5 @@
 //const session = require('./userSession').createSession;
-const db = Mod.db.inst;
+const db = application.database
 const userCollection = 'users';
 
 module.exports = {
@@ -19,7 +19,7 @@ async function getUser(username) {
 // TO DO - hash password before database insert
 async function registerUser({username, password}) {
 	const result = await db;
-	return result.insertSingle({username, password}, userCollection);
+	return result.insertSingle(userCollection, {username, password});
 }
 
 

@@ -6,13 +6,36 @@ class Client {
 		this.token = headers.token;
 		this.appkey = headers.appkey;
 		this.host = headers.host;
-		this.requestLimit = 50;
-		this.requestList = [];
+		this.requestTreshold = 50;
+		this.tresholdList = [];
 	}
 
 	set request(reqObj) {
-		this.requestList.push(reqObj);
+		const currentReq = new Date();
+		const previusReq = this.tresholdList[this.tresholdList.length - 1];
+		
+		if (currentReq - 1000 > previusReq) {
+			this.tresholdList.shift();
+		}
+
+		this.tresholdList.push(currentReq);
+		console.log(this.tresholdList.length);
+		if (this.checkTreshold()) console.log('overlimit');
 	}
+
+	checkTreshold() {
+		const treshold = this.requestTreshold;
+		const req = this.tresholdList; 
+		return treshold > req.length ? false : true;
+	}
+
+	// TO DO:
+	// 1. Add self destroy after request treshold reach
+	// - add callback from main module
+	// 2. Create banned clients list
+	//
+
+
 }
 
 

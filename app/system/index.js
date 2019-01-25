@@ -22,7 +22,7 @@ const database = modules.getPublished({name: 'crud.mongo.js'});
 
 
 // Load and setting Http request authorizer
-const HttpAuthorizer = require('./request-authorization');
+const EndpointsAuth = require('./endpoints-authorization');
 
 // Load client stats and authorization
 const ClientAuthorizer = require('./client-authorization');
@@ -39,7 +39,7 @@ class Application {
 
 		// System modules
 		this.filesManager = new Manager();
-		this.httpAuthorizer = new HttpAuthorizer();
+		this.httpAuthorizer = new EndpointsAuth();
 		this.clientAuthorizer = new ClientAuthorizer(this.database);  
 	}
 

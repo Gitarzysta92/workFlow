@@ -3,11 +3,16 @@ const setDependency = require('./modulesInterface.js').dependency;
 const Module = require('module');
 
 
+// TO DO
+// Refactor this inject 
+// pass module interface in wrapper arguments
+//
 
 (function(moduleWrapper) {
 	Module.wrap = function(script) {
 		const moduleInterface = interfaceDirectory.replace(/\\/g, '/');
-		script = 'const Mod = require(\''+ moduleInterface +'\');'
+		script = 'const Mod = require(\''+ moduleInterface +'\').mod;'
+		+ 'const application = require(\''+ moduleInterface +'\').app;'
 		+ script;
 		return moduleWrapper(script);		
 	};
