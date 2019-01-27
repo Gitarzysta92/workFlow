@@ -16,7 +16,6 @@ class ClientAuthorizer {
 		this.clientsList = [];
 		this.collection = 'clientApps';
 		this.addTrustedClient({
-
 	 		appkey: 'rootkey',
 	 		host: 'localhost:3000'
 	 	});
@@ -27,6 +26,7 @@ class ClientAuthorizer {
 		const route = {
 			name: 'clientAuthorizer',
 			type: 'use',
+			hook: 'pre-evaluation',
 			endpoint: '*',
 			controller: this.authorizeClient.bind(this)
 		}

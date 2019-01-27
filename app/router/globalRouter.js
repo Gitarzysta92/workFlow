@@ -7,62 +7,102 @@
 
 
 class GlobalRouter {
-	constructor(controler, express) {
+	constructor(controller, express) {
 		this.routes = [];
 		this.router = express.Router();
-		this.pepareController = controler;
-		this.event = 'http-request';
-
+		this.midWare = express();
+		this.pepareController = controller;
+		this.middlewareHooks = {
+			'pre-evaluation': [],
+			'setting-request': [],
+			'authorization': [],
+			'authorized': [],
+			'error-handling': []
+		}
 	}
 	// pass express router module
 	getRouterInstance() {
 		return this.router;
 	}
 
-
-	//
-	// add single route
-	// input: route object 
-	// set controller execute function
-	//
-	registerRoute(route) {
-	
-		if (route.endpoint === undefined) {
-			this.router[route.type](this.pepareController(route.controller));
-		} else {
-			this.router[route.type](route.endpoint, this.pepareController(route.controller));	
-		}
-		//Log all registered routes
-		console.log('Route:', route.endpoint, 'Type:', route.type, 'is ready.');
-	}
-
 	//
 	// add all given routes
 	// input: array of route objects
 	//
-	registerRoutes(routesList) {
-		routesList.forEach(route => {
-			this.registerRoute(route);	
+	registerRoutes() {
+		this.routes.forEach(route => {
+			this.register(route);	
 		});
 	}
 
+	//
+	// add single route or middleware
+	// input: route object 
+	// set controller execute function
+	//
+	// TO DO: refator that part
+	//
+	register(route) {
+		if (route.type === 'use' && route.endpoint === undefined) {
+			this.midWare[route.type](this.pepareController(route.controller));
+		} else {
+			this.router[route.type](route.endpoint, this.pepareController(route.controller));	
+		}
+		//Log all registered routes
+		console.log('Route:', route.name, route.endpoint, 'Method:', route.type, 'is ready.');
+	}
+
+	registerMiddlewares() {
+		const list = this.middlewareHooks;
+		for (const key in list) {
+			list[key].forEach(middleware => {
+				this.register(middleware)
+			});
+		}
+	}
+
+	registerMiddleware(key) {
+		const list = this.middlewareHooks[key];
+		list.forEach(middleware => {
+			this.register(middleware)
+		});
+	}
 	//
 	// set or overwrite routes
 	// input array: route objects
 	// 
 	setRoutes(routesArray) {
-		const flatArray = [];
 		routesArray.forEach(current => {
-			if (Array.isArray(current)) {
-				current.forEach(current => {		
-					this.setRoute(flatArray, current);
-				});
-			} else if (typeof current === 'object') {
-				this.setRoute(flatArray, current);		
+			const checkResult = this.checkRouteAndType(current);
+			if (checkResult === 'route') {
+				this.addRoute(current);
+			} else if (checkResult === 'middleware') {
+				this.addMiddleware(current);
+			} else {
+				// throw error -> given route is incorrect
 			}
 		});
-		this.routes = flatArray;
-		this.registerRoutes(this.routes);
+		//this.registerMiddlewares();
+		this.registerMiddleware('pre-evaluation');
+		this.registerMiddleware('setting-request');
+		this.registerMiddleware('authorization');
+		this.registerMiddleware('authorized');
+		this.registerRoutes();
+		this.registerMiddleware('error-handling');
+	}
+
+	checkRouteAndType(route) {
+		const name = route.hasOwnProperty('name');
+		const type = route.hasOwnProperty('type');
+		const endpoint = route.hasOwnProperty('endpoint');
+
+		if (!name && !type && !endpoint) return false;
+		if (route.type === 'use') {
+			const hook = route.hasOwnProperty('hook');
+			return hook ? 'middleware' : false
+		} else {
+			return 'route';
+		}
 	}
 
 	//
@@ -70,23 +110,33 @@ class GlobalRouter {
 	// input object:
 	// name:, type:, endpoint:, content:
 	//
-	setRoute(array, route) {
-		const result = array.find(current => {
+	addRoute(route) {
+		const result = this.routes.find(current => {
 			if (current.type === route.type && 
 				current.endpoint === route.endpoint) return true;
 		});
 
 		if (result) {
 			console.log('Route with given endpoint already exist', result.endpoint);
+			// throw error
 			return;
 		}
-
 		const routeObject = {
+			name: route.name,
 			type: route.type,
 			endpoint: route.endpoint,
 			controller: route.controller
 		}
-		array.push(routeObject);
+		this.routes.push(routeObject);
+	}
+
+	addMiddleware(route) {
+		const hook = this.middlewareHooks.hasOwnProperty(route.hook);
+		if (!hook) {
+			// throw error -> given hook is not matched
+			return; 
+		}
+		this.middlewareHooks[route.hook].push(route);	
 	}
 
 }

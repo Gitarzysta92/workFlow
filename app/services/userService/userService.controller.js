@@ -8,10 +8,11 @@ const mod = new Mod(__filename);
 
 //load node modules dependencies
 const service = require('./lib/userService.js');
-const session = require('./lib/userSession.js');
+const SessionsHandler = require('./lib/userSessions.js');
+const sessionsHandler = new SessionsHandler(); 
 
-
-
+//
+// User services
 function getUser(req, res, next) {
 	service.getUser(req.params.name).then(userData => res.send(userData));
 }
@@ -21,7 +22,36 @@ function registerUser(req, res, next) {
 }
 
 function authenticateUser(req, res, next) {
-	service.authenticateUser(req.body).then(session => res.send(session.getToken()));
+	service.authenticateUser(req.body).then(user => {
+		const sessionExists = sessionsHandler.getSession({name: user.username});
+
+		if (sessionExists) {
+			res.send(sessionExists.token);
+			return;
+		}
+		// TO DO: Setup admin to user session handler
+		const userSession = sessionsHandler.createSession(user);
+		res.send(userSession.token);
+	}).catch(err => next(err));
+}
+
+
+//
+// User sessions
+// check is users sesssion had be created
+// if is, bind session to request
+function bindSession(req, res, next) {
+	const userToken = req.headers.hasOwnProperty('session-token');
+	if (!userToken) {
+		// throw error -> your token is invaild
+		next();
+		return;	
+	}
+	const userSession = sessionsHandler.getSession({token: req.headers['session-token']});
+	if (userSession) {
+		req.userSession = userSession;
+	}
+	next();
 }
 
 
@@ -35,5 +65,6 @@ module.exports = mod;
 module.exports.methods = {
 	getUser,
 	registerUser,
-	authenticateUser
+	authenticateUser,
+	bindSession
 };

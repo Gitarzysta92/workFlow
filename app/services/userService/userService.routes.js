@@ -17,28 +17,33 @@ const routes = [
 		name: 'get-user',
 		type: 'get',
 		access: 'administrator',
-		endpoint: '/user',
+		endpoint: /^\/user$/,
 		controller: service.getUser
 	},
 	{
 		name: 'register-user',
 		type: 'post',
 		access: 'moderator',
-		endpoint: '/user',
+		endpoint: /^\/user$/,
 		controller: service.registerUser
 	},
 	{
-		name: 'register-user',
-		type: 'get',
-		access: 'subscriber',
-		endpoint: '/user/:id',
+		name: 'authenticate-user',
+		type: 'post',
+		access: 'public',
+		endpoint: '/user/auth',
 		controller: service.authenticateUser
+	},
+	{
+		name: 'user-session-middleware',
+		type: 'use',
+		hook: 'setting-request',
+		endpoint: '*',
+		controller: service.bindSession	
 	}
 ]
 
 // Public
-mod.publish(() => {
-	return routes
-});
+mod.publish(() => routes);
 module.exports = mod;
 

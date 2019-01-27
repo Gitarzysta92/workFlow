@@ -16,35 +16,57 @@ class EndpointsAuthorizer {
 			{
 				type: 'subscriber',
 				inherits: ['moderator']
+			},
+			{
+				type: 'public',
+				inherits: ['subscriber']
 			}
 		];
 		this.authorizedUsers = [];
 		this.setupModels();
-		console.log(this.accessModels);	
 	}
 
 	setAuthorization(routesList) {
 		const authRoutes = [];
 		const wrapped = routesList.forEach(current => {
 			if (current.hasOwnProperty('access')) {
-			//	console.log(current);
+				if (this.accessModels.hasOwnProperty(current.access)) {
+					const model = this.accessModels[current.access];
+					model.add = current;
+					authRoutes.push(this.createAuthRoute(current, model));
+				} else {
+					// throw error
+				}
 			}
-			authRoutes.push(this.getAuthRoute(current));
 		});
 		return authRoutes.concat(routesList);
 	}
 
-	getAuthRoute(route) {
+	createAuthRoute(route, authModel) {
 		if (route) {
 			return {
 				name: route.name + '-auth',
 				type: 'use',
+				hook: 'authorization',
 				endpoint: route.endpoint,
-				controller: this.middlewareAuth.bind(this)
+				controller: this.middlewareAuth(authModel)
 			}
 		} else {
 			//throw an error
 		} 
+	}
+
+	middlewareAuth(authModel) {
+		return function(req, res, next) {
+			if (req.hasOwnProperty('route')) {
+				//throw error
+				next();
+				return;
+			}
+			const authorization = authModel;
+			authorization.check(req);
+			next();
+		}.bind(this);	
 	}
 
 	setupModels() {
@@ -72,19 +94,7 @@ class EndpointsAuthorizer {
 
 	}
 
-	middlewareAuth(req, res, next) {
-		//check user session token
 
-		//get user session obj
-
-		//Check is user have permissions for given route
-
-		//Pass
-
-		//authorization method
-		console.log('Time', Date.now());
-		next();
-	}
 
 }
 

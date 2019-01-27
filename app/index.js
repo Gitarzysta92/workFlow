@@ -27,6 +27,16 @@ const Router = require('./router/globalRouter');
 const globalRouter = new Router(mainController.wrapper, express);
 
 
+// Load and setting Global Router
+const errorHandler = require('./utilities/errorHandler');
+globalRouter.addMiddleware({
+	name: 'Error-handler',
+	type: 'use',
+	hook: 'error-handling',
+	controller: errorHandler
+})
+
+
 // Setup routes
 let routes = modulesList.getAllPublished({type: 'routes'});
 routes = app.httpAuthorizer.setAuthorization(routes);
@@ -34,17 +44,15 @@ routes = app.clientAuthorizer.setAuthorization(routes);
 globalRouter.setRoutes(routes);
 
 
-// Load and setting Global Router
-const errorHandler = require('./utilities/errorHandler');
-const expressInstance = express();
 
 
 // Start http server
+const expressInstance = express();
 const port = process.env.NODE_ENV === 'production' ? 80 : 3000;
 const server = modulesList.getPublished({name: 'server.mod.js'});
 
 server(port, globalRouter.getRouterInstance(), expressInstance);
 
-expressInstance.use(errorHandler);
+
 
 
