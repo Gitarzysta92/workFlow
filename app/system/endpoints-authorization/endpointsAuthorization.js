@@ -1,38 +1,32 @@
 const AccessModel = require('./accessModel');
 
 
-
-const first = [
-	{
-		type: 'get',
-		endpoint: '/home'
-	}
-]
-
-// routes permissions with inherit
-
-const second = [
-	{
-
-	},
-...first]
-
-
-const third = [
-	{
-
-	},
-...second]
-
-
 class EndpointsAuthorizer {
 	constructor() {
-		this.accessModel = [];
+		this.accessModels = {};
+		this.accessLevels = [
+			{
+				type: 'administrator',
+				inherits: []
+			},
+			{
+				type: 'moderator',
+				inherits: ['administrator']
+			},
+			{
+				type: 'subscriber',
+				inherits: ['moderator', 'administrator']
+			}
+		];
+		this.authorizedUsers = [];	
 	}
 
 	setAuthorization(routesList) {
 		const authRoutes = [];
 		const wrapped = routesList.forEach(current => {
+			if (current.hasOwnProperty('access')) {
+				console.log(current);
+			}
 			authRoutes.push(this.getAuthRoute(current));
 		});
 		return authRoutes.concat(routesList);
@@ -49,10 +43,23 @@ class EndpointsAuthorizer {
 		} else {
 			//throw an error
 		} 
-	} 
+	}
 
-	addAccessModel() {
-		const model = new AccessModel();
+	setupModels() {
+		this.accessLevels.forEach(current => {
+
+		});
+	}
+
+	addAccessModel(level) {
+		Object.defineProperty(this.accessModels, level.type, new AccessModel({
+			name: level.type
+		}));
+	}
+
+
+	registerUser() {
+
 	}
 
 	middlewareAuth(req, res, next) {

@@ -16,18 +16,21 @@ const routes = [
 	{
 		name: 'get-user',
 		type: 'get',
+		access: 'administrator',
 		endpoint: '/user',
 		controller: service.getUser
 	},
 	{
 		name: 'register-user',
 		type: 'post',
+		access: 'moderator',
 		endpoint: '/user',
 		controller: service.registerUser
 	},
 	{
 		name: 'register-user',
 		type: 'get',
+		access: 'subscriber',
 		endpoint: '/user/:id',
 		controller: service.authenticateUser
 	}
