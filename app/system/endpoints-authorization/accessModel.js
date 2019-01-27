@@ -2,11 +2,16 @@ class AccessModel {
 	constructor(args) {
 		this.modelName = args.name;
 		this.permissions = [];
-		this.model = [];
+		this.uris = [];
+		this.inheritModel(args.inherits)
+
 	}
 
-	inheritModel(subordinate = []) {
-		this.model.concat(subordinate);
+	inheritModel(subordinate) {
+		if (subordinate) {
+			this.uris.push(subordinate.uris);
+			this.permissions.push(subordinate.permissions)
+		}
 	}
 
 	compare(endpoint) {
