@@ -1,0 +1,547 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-weight\tproperty"
+			],
+			[
+				"a",
+				"archive"
+			],
+			[
+				"max-",
+				"max-width\tproperty"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"in",
+				"insertSingle"
+			],
+			[
+				"get",
+				"getUser"
+			],
+			[
+				"client",
+				"clientAuthorizer"
+			],
+			[
+				"tex",
+				"text-align\tproperty"
+			],
+			[
+				"max",
+				"max-width\tproperty"
+			],
+			[
+				"tex-al",
+				"text-align\tproperty"
+			],
+			[
+				"footer",
+				"footer-sign"
+			],
+			[
+				"rb",
+				"rgba()\tbackground-color"
+			],
+			[
+				"agg",
+				"aggregator"
+			],
+			[
+				"sourc",
+				"sourceDir"
+			],
+			[
+				"projec",
+				"projectId"
+			],
+			[
+				"pro",
+				"projectId"
+			],
+			[
+				"marg",
+				"margin-bottom\tproperty"
+			],
+			[
+				"data",
+				"databaseInstance"
+			],
+			[
+				"t",
+				"unset\tbackground-color"
+			],
+			[
+				"text-",
+				"text-align\tproperty"
+			],
+			[
+				"text",
+				"text-align\tproperty"
+			],
+			[
+				"i",
+				"initial\ttext-transform"
+			],
+			[
+				"font-",
+				"font-weight\tproperty"
+			],
+			[
+				"coun",
+				"CountryFlagList"
+			],
+			[
+				"u",
+				"uppercase\ttext-transform"
+			],
+			[
+				"TH",
+				"THUMB_UP_COMMENT"
+			],
+			[
+				"item",
+				"itemGroup"
+			],
+			[
+				"ite",
+				"iterationPromise"
+			],
+			[
+				"app",
+				"appDirModel"
+			],
+			[
+				"dir",
+				"directory"
+			],
+			[
+				"box",
+				"box-sizing\tproperty"
+			],
+			[
+				"border-bott",
+				"border-bottom-width\tproperty"
+			],
+			[
+				"align",
+				"align-items\tproperty"
+			],
+			[
+				"te",
+				"text-decoration\tproperty"
+			],
+			[
+				"inline",
+				"inline-block\tdisplay"
+			],
+			[
+				"list",
+				"list-style\tproperty"
+			],
+			[
+				"winner",
+				"winner"
+			],
+			[
+				"onCha",
+				"onChangeHandle"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/router/globalRouter.js",
+			"settings":
+			{
+				"buffer_size": 2068,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pacla",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Michał/Desktop/github/workFlow",
+		"/C/Users/Michał/Desktop/github/workFlow/app"
+	],
+	"file_history":
+	[
+		"/E/Intersys/2019 01 29 Mailing - computerworld/kodowany/mailing.html",
+		"/D/utilities/xampp/htdocs/collins/results.php",
+		"/C/Users/Michał/Desktop/github/workFlow/package.json",
+		"/D/utilities/xampp/htdocs/collins/class-search-filter.php",
+		"/D/utilities/xampp/htdocs/collins/index.php",
+		"/D/utilities/xampp/htdocs/collins/public.php",
+		"/D/utilities/xampp/htdocs/olewnik/style.css",
+		"/E/Intersys/2018 11 28 Mailing - sniadania biznesowe/kodowany/mailing.html",
+		"/D/utilities/xampp/htdocs/collins/wp-config.php",
+		"/D/utilities/xampp/htdocs/olewnik/laureaci.php",
+		"/D/utilities/xampp/htdocs/olewnik/kontakt.php",
+		"/D/utilities/xampp/htdocs/olewnik/index.php",
+		"/D/utilities/xampp/htdocs/olewnik/footer.php",
+		"/D/utilities/xampp/htdocs/olewnik/nagrody.php",
+		"/D/utilities/xampp/htdocs/assets/js/script.js",
+		"/D/utilities/xampp/htdocs/template/navigation.php",
+		"/D/utilities/xampp/htdocs/template/head.php",
+		"/D/utilities/xampp/htdocs/index.php",
+		"/D/utilities/xampp/htdocs/template/footer.php",
+		"/D/utilities/xampp/htdocs/kontakt.php",
+		"/D/utilities/xampp/htdocs/laureaci.php",
+		"/D/utilities/xampp/htdocs/nagrody.php",
+		"/D/utilities/xampp/htdocs/assets/sass/style.scss",
+		"/D/utilities/xampp/htdocs/assets/css/style.css",
+		"/D/utilities/xampp/htdocs/package.json",
+		"/D/utilities/xampp/htdocs/rejestr.php",
+		"/D/utilities/xampp/htdocs/collins/atole44_collins.sql",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/request-authorization/accessModel.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/router/globalRouter.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/userService.controller.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/userService.routes.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/lib/userSession.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/request-authorization/requestAuthorization.js",
+		"/D/utilities/xampp/htdocs/collins/style.css",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/client-authorization/clientAuthorization.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/controller/mainController.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/index.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/index.js",
+		"/D/utilities/xampp/htdocs/olewnik/images/www/index.php",
+		"/C/Users/Michał/Desktop/github/workFlow/app/database/crud.mongo.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/lib/userService.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/modules-manager/modulesManager.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/modules-manager/modulesInterface.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/modules-manager/modulesInitializer.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/database/instance.mongo.js",
+		"/C/Users/Michał/Desktop/github/workFlow/server/server.mod.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/serviceTwo/twoRoutes.routes.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/serviceOne/oneRoutes.routes.js",
+		"/C/Users/Michał/Desktop/github/workFlow/configs/httpServer.config.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/database/mongoInstance.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/database/mongoCrud.js",
+		"/C/Users/Michał/Desktop/github/workFlow/index.js",
+		"/D/utilities/xampp/htdocs/olewnik/kabanosy_z_filetem_kurczaka.php",
+		"/D/utilities/xampp/htdocs/olewnik/kabanosy_wieprzowe.php",
+		"/D/utilities/xampp/htdocs/olewnik/kabanosy_z_gesina.php",
+		"/D/utilities/xampp/htdocs/olewnik/kabanosy_peperoni.php",
+		"/D/utilities/xampp/htdocs/olewnik/przekaski.php",
+		"/D/utilities/xampp/htdocs/olewnik/suche.php",
+		"/D/utilities/xampp/htdocs/olewnik/kextra.php",
+		"/D/utilities/xampp/htdocs/beczak/index.php",
+		"/D/utilities/xampp/htdocs/beczak/js/script.js",
+		"/D/utilities/xampp/htdocs/beczak/style.css",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/client-authorization/clientWrapper.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/utilities/errorHandler/package.json",
+		"/C/Users/Michał/Desktop/github/workFlow/app/utilities/errorHandler.js",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-config.php",
+		"/D/utilities/xampp/htdocs/znDirect/footer.php",
+		"/D/utilities/xampp/htdocs/znDirect/header-stick.php",
+		"/D/utilities/xampp/htdocs/footer.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-includes/template-loader.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-includes/functions.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-includes/admin-bar.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-includes/Requests/Auth.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-includes/Requests/Auth/Basic.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-load.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/wp-blog-header.php",
+		"/D/utilities/xampp/htdocs/znDirect/wordpress/index.php",
+		"/D/utilities/xampp/htdocs/beczak/js/model.js",
+		"/D/utilities/xampp/htdocs/beczak/header.php",
+		"/D/utilities/xampp/htdocs/znDirect/custom_css.css",
+		"/D/utilities/xampp/htdocs/znDirect/caustom_css.css",
+		"/D/utilities/xampp/htdocs/znDirect/header-stick_with_left_right_menu.php",
+		"/D/utilities/xampp/htdocs/znDirect/header.php",
+		"/D/utilities/xampp/htdocs/znDirect/style.css",
+		"/D/utilities/xampp/htdocs/beach/cennik.php",
+		"/D/utilities/xampp/htdocs/beach/index.php",
+		"/C/Users/Michał/Desktop/github/flatArray/index.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/flatMap.js",
+		"/C/Users/Michał/Desktop/github/handleStateModule/index.js",
+		"/C/Users/Michał/Desktop/Bez-nazwy-1.html",
+		"/D/utilities/xampp/htdocs/style.css",
+		"/D/utilities/xampp/htdocs/header.php",
+		"/D/utilities/xampp/htdocs/js/script.js",
+		"/D/utilities/xampp/htdocs/js/model.js",
+		"/D/utilities/xampp/htdocs/slider.js",
+		"/D/utilities/xampp/htdocs/css/index.php",
+		"/D/utilities/xampp/htdocs/contact.php",
+		"/C/Users/Michał/Desktop/sandbox/module-second.js",
+		"/C/Users/Michał/Desktop/sandbox/module.js",
+		"/C/Users/Michał/Desktop/sandbox/interface.js",
+		"/C/Users/Michał/Desktop/sandbox/app.js",
+		"/C/Users/Michał/Desktop/sandbox/initializer.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/server/routes/post.routes.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/client/modules/Post/PostActions.js",
+		"/C/Users/Michał/Desktop/github/modul-24/index.test.js",
+		"/C/Users/Michał/Desktop/github/modul-24/uptime.js",
+		"/C/Users/Michał/Desktop/github/modul-24/index.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/webpack.config.server.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/config/blueprints/module/model.ejs",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/client/util/apiCaller.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/client/App.js",
+		"/C/Users/Michał/Desktop/github/modul-22/apka-testowa/server/models/post.js",
+		"/C/Users/Michał/Desktop/github/modul-24/package.json",
+		"/C/Users/Michał/Desktop/github/modul-24/.gitignore",
+		"/C/Users/Michał/Desktop/github/modul-20/src/presentational/home.component.js",
+		"/C/Users/Michał/Desktop/github/modul-20/src/index.css",
+		"/C/Users/Michał/Desktop/github/modul-20/src/presentational/country-details.component.js",
+		"/D/utilities/xampp/htdocs/results.php",
+		"/C/Users/Michał/Desktop/github/modul-20/package.json",
+		"/C/Users/Michał/Desktop/github/modul-20/src/reducers/countries-reducer.js",
+		"/D/utilities/xampp/htdocs/montenero/wp-config.php",
+		"/D/utilities/xampp/htdocs/montenero/dump/index.php",
+		"/D/utilities/xampp/htdocs/montenero/dump/atole44_montenero.sql",
+		"/C/Users/Michał/Downloads/montenero/atole44_montenero.sql",
+		"/C/Users/Michał/Downloads/bigdump/bigdump.php",
+		"/C/Users/Michał/Downloads/atole44_montenero.sql",
+		"/D/utilities/xampp/htdocs/carousel_son.php",
+		"/D/utilities/xampp/htdocs/carousel_father.php"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"http://",
+			"max-wid",
+			"min-width",
+			"1400",
+			"footer_bottom_holder",
+			"header_bottom",
+			"o nas",
+			"menu-container",
+			"photo-close",
+			"first",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"Zespół",
+			"zespół",
+			"var",
+			"first",
+			"first-child",
+			"c-hamburger span",
+			"c-hamb",
+			"utf8mb4",
+			"utf8mb4_unicode_520_ci",
+			"utf8mb4_unicode_ci",
+			"ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci",
+			"default-tdt",
+			"sprzedaz",
+			"1",
+			"entryPath",
+			"href",
+			"span"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/router/globalRouter.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "workFlow.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

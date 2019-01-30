@@ -17,14 +17,14 @@ const routes = [
 		name: 'get-user',
 		type: 'get',
 		access: 'administrator',
-		endpoint: /^\/user$/,
+		endpoint: '/user',
 		controller: service.getUser
 	},
 	{
 		name: 'register-user',
 		type: 'post',
 		access: 'moderator',
-		endpoint: /^\/user$/,
+		endpoint: '/user',
 		controller: service.registerUser
 	},
 	{
@@ -34,16 +34,15 @@ const routes = [
 		endpoint: '/user/auth',
 		controller: service.authenticateUser
 	},
-	{
+	/*{
 		name: 'user-session-middleware',
 		type: 'use',
 		hook: 'setting-request',
 		endpoint: '*',
 		controller: service.bindSession	
-	}
+	}*/
 ]
 
 // Public
 mod.publish(() => routes);
 module.exports = mod;
-

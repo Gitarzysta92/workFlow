@@ -39,7 +39,7 @@ class Application {
 
 		// System modules
 		this.filesManager = new Manager();
-		this.httpAuthorizer = new EndpointsAuth();
+		//this.httpAuthorizer = new EndpointsAuth();
 		this.clientAuthorizer = new ClientAuthorizer(this.database);  
 	}
 

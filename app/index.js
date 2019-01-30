@@ -39,7 +39,7 @@ globalRouter.addMiddleware({
 
 // Setup routes
 let routes = modulesList.getAllPublished({type: 'routes'});
-routes = app.httpAuthorizer.setAuthorization(routes);
+//routes = app.httpAuthorizer.setAuthorization(routes);
 routes = app.clientAuthorizer.setAuthorization(routes);
 globalRouter.setRoutes(routes);
 

@@ -26,6 +26,10 @@ class EndpointsAuthorizer {
 		this.setupModels();
 	}
 
+
+	// 
+	// Set authorization method for each given path
+	// takes: routes array
 	setAuthorization(routesList) {
 		const authRoutes = [];
 		const wrapped = routesList.forEach(current => {

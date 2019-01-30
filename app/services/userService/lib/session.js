@@ -1,6 +1,6 @@
-const access = application.httpAuthorizer.accessModels;
+//const access = application.httpAuthorizer.accessModels;
 
-console.log(access);
+//console.log(access);
 
 class UserSession {
 	constructor(data) {
