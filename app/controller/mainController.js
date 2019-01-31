@@ -3,30 +3,50 @@
 // ------------------
 
 // Setup express router
+const Service = require('./service.js');
 
 class MainController {
 	constructor(emiter) {
 		this.proceed = emiter;
+		this.requestsLog = [];
+		this.services = {};
+	}
 
-
+	wrapLocalControllers(routes) {
+		routes.map(current => {
+			const setup = {
+				name: current.name,
+				controller: current.controller
+			}
+			const service = new Service(setup, this.requestsLog);
+			Object.defineProperty(this.services, setup.name, {
+				value: service,
+				writable: false
+			});
+			return current.controller = this.wrapper(service);
+		});
+		console.log(this.services);
 	}
 
 	// sprawdzenie czy zostało wysłane zapytanie poprzez middleware przed wykonaniem obecnego 
 
-	wrapper(func) {
+	wrapper(serviceObject) {
 		return function(req, res, next) {
-			const controller = func;
-			if (controller.constructor.name === 'AsyncFunction') {
-				controller(req, res, next).catch(next);	
+			const user = req.hasOwnProperty('userSession') ? req.userSession : 'Not registered';
+			const service = serviceObject;
+			const exact = service.request(user);
+
+			if (exact.constructor.name === 'AsyncFunction') {
+				exact(req, res, next).catch(next);	
 			} else {
 				try {
-					controller(req, res, next);
+					exact(req, res, next);
 				} catch(err) {
 					next(err);
 				}
-				
 			}
-		}
+			console.log(this.requestsLog);
+		}.bind(this);
 	}
 }
 

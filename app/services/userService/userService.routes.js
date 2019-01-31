@@ -17,13 +17,15 @@ const routes = [
 		name: 'get-user',
 		type: 'get',
 		access: 'administrator',
-		endpoint: '/user',
+		hook: 'execution',
+		endpoint: '/user/:id',
 		controller: service.getUser
 	},
 	{
 		name: 'register-user',
 		type: 'post',
-		access: 'moderator',
+		access: 'public',
+		hook: 'execution',
 		endpoint: '/user',
 		controller: service.registerUser
 	},
@@ -31,16 +33,17 @@ const routes = [
 		name: 'authenticate-user',
 		type: 'post',
 		access: 'public',
+		hook: 'execution',
 		endpoint: '/user/auth',
 		controller: service.authenticateUser
 	},
-	/*{
+	{
 		name: 'user-session-middleware',
 		type: 'use',
-		hook: 'setting-request',
 		endpoint: '*',
+		hook: 'setting-request',
 		controller: service.bindSession	
-	}*/
+	}
 ]
 
 // Public

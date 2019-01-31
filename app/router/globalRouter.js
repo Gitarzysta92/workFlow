@@ -7,11 +7,9 @@
 
 
 class GlobalRouter {
-	constructor(controller, express) {
+	constructor(express) {
 		this.routes = [];
 		this.router = express.Router();
-		this.midWare = express();
-		this.pepareController = controller;
 		this.middlewareHooks = {
 			'pre-evaluation': [],
 			'setting-request': [],
@@ -43,14 +41,16 @@ class GlobalRouter {
 	// TO DO: refator that part
 	//
 	register(route) {
+		const callbacks = Object.values(route.controllers).filter(current => current);
 		if (route.type === 'use' && route.endpoint === undefined) {
-			this.midWare[route.type](this.pepareController(route.controller));
+			this.router[route.type](callbacks);
 		} else {
-			this.router[route.type](route.endpoint, this.pepareController(route.controller));	
+			this.router[route.type](route.endpoint, callbacks);	
 		}
 		//Log all registered routes
 		console.log('Route:', route.name, route.endpoint, 'Method:', route.type, 'is ready.');
 	}
+
 
 	registerMiddlewares() {
 		const list = this.middlewareHooks;
@@ -111,22 +111,29 @@ class GlobalRouter {
 	// name:, type:, endpoint:, content:
 	//
 	addRoute(route) {
+		if (!route.hasOwnProperty('hook')) return;  
+
 		const result = this.routes.find(current => {
 			if (current.type === route.type && 
 				current.endpoint === route.endpoint) return true;
 		});
 
 		if (result) {
-			console.log('Route with given endpoint already exist', result.endpoint);
-			// throw error
+			result.name += '  ' + route.name;
+			result.controllers[route.hook] = route.controller;  
 			return;
 		}
 		const routeObject = {
 			name: route.name,
 			type: route.type,
 			endpoint: route.endpoint,
-			controller: route.controller
+			controllers: {
+				authorization: undefined, 
+				execution: 	undefined
+			}
 		}
+		routeObject.controllers[route.hook] = route.controller;
+
 		this.routes.push(routeObject);
 	}
 
@@ -136,7 +143,17 @@ class GlobalRouter {
 			// throw error -> given hook is not matched
 			return; 
 		}
-		this.middlewareHooks[route.hook].push(route);	
+
+		const routeObject = {
+			name: route.name,
+			type: route.type,
+			endpoint: route.endpoint,
+			controllers: {
+				execution: 	route.controller
+			}
+		}
+
+		this.middlewareHooks[route.hook].push(routeObject);	
 	}
 
 }

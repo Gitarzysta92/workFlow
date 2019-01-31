@@ -35,7 +35,6 @@ class ClientAuthorizer {
 
 	async authorizeClient(req, res, next) {
 		const client = this.isConnected(req.headers);
-
 		// check is client established any connection already 
 		if (client) {
 			client.request = 'asd';

@@ -14,7 +14,11 @@ const sessionsHandler = new SessionsHandler();
 //
 // User services
 function getUser(req, res, next) {
-	service.getUser(req.params.name).then(userData => res.send(userData));
+	console.log(req.params.id);
+	service.getUser(req.params.name).then(userData => {
+		console.log(userData);
+		res.send(userData)
+	});
 }
 
 function registerUser(req, res, next) {
@@ -47,6 +51,7 @@ function bindSession(req, res, next) {
 		next();
 		return;	
 	}
+
 	const userSession = sessionsHandler.getSession({token: req.headers['session-token']});
 	if (userSession) {
 		req.userSession = userSession;

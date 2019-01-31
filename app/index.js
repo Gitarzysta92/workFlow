@@ -24,7 +24,7 @@ const mainController = new Controller(app.eventsEmitter);
 
 // Load and setting Global Router
 const Router = require('./router/globalRouter'); 
-const globalRouter = new Router(mainController.wrapper, express);
+const globalRouter = new Router(express);
 
 
 // Load and setting Global Router
@@ -39,8 +39,10 @@ globalRouter.addMiddleware({
 
 // Setup routes
 let routes = modulesList.getAllPublished({type: 'routes'});
-//routes = app.httpAuthorizer.setAuthorization(routes);
+
+routes = app.httpAuthorizer.setAuthorization(routes);
 routes = app.clientAuthorizer.setAuthorization(routes);
+mainController.wrapLocalControllers(routes);
 globalRouter.setRoutes(routes);
 
 

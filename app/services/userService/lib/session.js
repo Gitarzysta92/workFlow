@@ -1,11 +1,10 @@
-//const access = application.httpAuthorizer.accessModels;
+const access = application.httpAuthorizer.accessModels;
 
-//console.log(access);
 
 class UserSession {
 	constructor(data) {
 		this.name = data.username;
-		this.accessLevel = data.accessLevel || 'subscriber';
+		this.accessLevel = data.accessLevel || 'administrator';
 		this.initDate = Date.now();
 		this.expiryDate = this.initDate;
 		this.userToken = {
