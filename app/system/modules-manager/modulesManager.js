@@ -6,11 +6,13 @@ const dirMapper = require('./directoryMapper.js');
 const dirMapperSync = require('./directoryMapperSync.js');
 
 
-
+//
+// Asynchronous files manager 
+//
 class Manager {
 	constructor(appDir = defaultDirectory) {
 		this.directory = appDir;
-		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md'];
+		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md','webpack.config.js'];
 		this.mapper = {};
 		
 	}
@@ -28,10 +30,14 @@ class Manager {
 	}
 }
 
+
+//
+// Synchronous files manager 
+//
 class ManagerSync {
 	constructor(appDir = defaultDirectory) {
 		this.directory = appDir;
-		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md'];
+		this.mapperIgnore = ['node_modules', '.gitignore','.git','package-lock.json', 'package.json', 'README.md','webpack.config.js'];
 		this.mapper = new dirMapperSync(this.directory, this.mapperIgnore);
 		this.interf = interfaceDependency;
 	}

@@ -14,9 +14,8 @@ const sessionsHandler = new SessionsHandler();
 //
 // User services
 function getUser(req, res, next) {
-	console.log(req.params.id);
+
 	service.getUser(req.params.name).then(userData => {
-		console.log(userData);
 		res.send(userData)
 	});
 }
@@ -26,7 +25,14 @@ function registerUser(req, res, next) {
 }
 
 function authenticateUser(req, res, next) {
+		console.log(req,  req.body);
 	service.authenticateUser(req.body).then(user => {
+
+		if (!user) {
+			throw new Error('User not mached');
+			return;
+		}
+
 		const sessionExists = sessionsHandler.getSession({name: user.username});
 
 		if (sessionExists) {

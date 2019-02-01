@@ -17,6 +17,7 @@ const type = ['.mod.','.config.','.routes.','.controller.'];
 const modulesList = app.filesManager.registerModules(type);
 
 
+
 // Load and setting Main Controller
 const Controller = require('./controller/mainController');
 const mainController = new Controller(app.eventsEmitter);

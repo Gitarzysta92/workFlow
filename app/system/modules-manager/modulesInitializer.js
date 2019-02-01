@@ -38,7 +38,7 @@ class ModulesInitializer  {
 	}
 
 
-	getPublished(query) {
+	getPublished(query) {			
 		return this.checkDependency(query, this.modules).published;
 	}
 
@@ -53,10 +53,13 @@ class ModulesInitializer  {
 			this.stack.push(require(current));
 		});
 		this.register();
+
 	}
 
 	register() {
 		const current = this.stack.shift();
+
+		if (!current.hasOwnProperty('_dependencyQuery')) return false;
 		if (current._dependencyQuery.length > 0){
 			current._dependencyQuery = current._dependencyQuery.filter(query => {
 				// check dependency is registered in this.modules
@@ -68,6 +71,7 @@ class ModulesInitializer  {
 			});
 			this.stack[this.stack.length] = current;
 		} else {
+
 			current.ready();
 			this.modules.push(current);
 		}
