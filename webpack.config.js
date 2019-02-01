@@ -25,7 +25,7 @@ module.exports = (env) => {
 	}
 	return {
 		mode: environment,
-		entry: './client/index.js',
+		entry: ["babel-polyfill", './client/index.js'],
 		output: {
 			path: path.resolve(__dirname, 'public'),
 			filename: 'app.bundle.js'

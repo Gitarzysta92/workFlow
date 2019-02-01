@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Gitarzysta92/workFlow#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",

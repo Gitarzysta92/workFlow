@@ -45,7 +45,6 @@ class MainController {
 					next(err);
 				}
 			}
-			console.log(this.requestsLog, req.headers);
 		}.bind(this);
 	}
 }

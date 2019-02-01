@@ -25,7 +25,6 @@ function registerUser(req, res, next) {
 }
 
 function authenticateUser(req, res, next) {
-		console.log(req,  req.body);
 	service.authenticateUser(req.body).then(user => {
 
 		if (!user) {

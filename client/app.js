@@ -4,13 +4,6 @@ import { hot } from 'react-hot-loader';
 import styles from './css/App.css';
 
 
-
-
-
-const data = {
-	username: 'roota',
-	password: 'root'
-}
 const requestParams = {
 	method: 'POST',
 	cache: 'no-cache',
@@ -23,6 +16,16 @@ const requestParams = {
 	body: JSON.stringify(data)
 }
 
+const data = {
+	username: 'roota',
+	password: 'root'
+}
+
+
+
+
+
+
 
 class App extends Component {
 	constructor(props) {
@@ -33,10 +36,32 @@ class App extends Component {
 			text: '',
 			name: ''
 		}
-		this.url='http://localhost:3000/user/auth'
+		this.register(data, requestParams).then().catch(err => console.log(err));
 
-		fetch(this.url, requestParams).then(data => console.log('response', data.body.json()));
 	}
+
+
+	async function register(data, requestParams) {
+		const url = 'http://localhost:3000/user';
+		const params = requestParams;
+
+		params.body = JSON.stringify(data);
+
+		fetch(this.register, params).then(data => console.log('response', data.body.json()));
+	}
+
+
+
+	async function authorize(data, requestParams) {
+		const url = 'http://localhost:3000/user/auth';
+		const params = requestParams;
+
+		params.body = JSON.stringify(data);
+
+		fetch(this.register, params).then(data => console.log('response', data.body.json()));
+			
+	}
+
 
 	componentDidMount() {
 

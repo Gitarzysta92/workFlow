@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sing",
+				"singleRoute"
+			],
+			[
+				"glob",
+				"GlobalRouter"
+			],
+			[
 				"font",
 				"font-weight\tproperty"
 			],
@@ -167,14 +175,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/router/globalRouter.js",
-			"settings":
-			{
-				"buffer_size": 2068,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -218,13 +218,20 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/C/Users/Michał/Desktop/github/workFlow",
-		"/C/Users/Michał/Desktop/github/workFlow/app"
-	],
 	"file_history":
 	[
+		"/D/utilities/xampp/htdocs/collins/wp-config.php",
+		"/C/Users/Michał/Downloads/atole44_montenero.sql",
+		"/E/Prospeo/2019 02 01 Mailing/!od klienta/prospeo.html",
+		"/C/Users/Michał/Desktop/github/workFlow/app/router/routeModel.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/index.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/userService.routes.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/index.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/lib/session.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/router/globalRouter.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/controller/mainController.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/endpoints-authorization/accessModel.js",
+		"/C/Users/Michał/Desktop/github/workFlow/app/system/endpoints-authorization/endpointsAuthorization.js",
 		"/E/Intersys/2019 01 29 Mailing - computerworld/kodowany/mailing.html",
 		"/D/utilities/xampp/htdocs/collins/results.php",
 		"/C/Users/Michał/Desktop/github/workFlow/package.json",
@@ -233,7 +240,6 @@
 		"/D/utilities/xampp/htdocs/collins/public.php",
 		"/D/utilities/xampp/htdocs/olewnik/style.css",
 		"/E/Intersys/2018 11 28 Mailing - sniadania biznesowe/kodowany/mailing.html",
-		"/D/utilities/xampp/htdocs/collins/wp-config.php",
 		"/D/utilities/xampp/htdocs/olewnik/laureaci.php",
 		"/D/utilities/xampp/htdocs/olewnik/kontakt.php",
 		"/D/utilities/xampp/htdocs/olewnik/index.php",
@@ -253,16 +259,11 @@
 		"/D/utilities/xampp/htdocs/rejestr.php",
 		"/D/utilities/xampp/htdocs/collins/atole44_collins.sql",
 		"/C/Users/Michał/Desktop/github/workFlow/app/system/request-authorization/accessModel.js",
-		"/C/Users/Michał/Desktop/github/workFlow/app/router/globalRouter.js",
 		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/userService.controller.js",
-		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/userService.routes.js",
 		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/lib/userSession.js",
 		"/C/Users/Michał/Desktop/github/workFlow/app/system/request-authorization/requestAuthorization.js",
 		"/D/utilities/xampp/htdocs/collins/style.css",
 		"/C/Users/Michał/Desktop/github/workFlow/app/system/client-authorization/clientAuthorization.js",
-		"/C/Users/Michał/Desktop/github/workFlow/app/controller/mainController.js",
-		"/C/Users/Michał/Desktop/github/workFlow/app/index.js",
-		"/C/Users/Michał/Desktop/github/workFlow/app/system/index.js",
 		"/D/utilities/xampp/htdocs/olewnik/images/www/index.php",
 		"/C/Users/Michał/Desktop/github/workFlow/app/database/crud.mongo.js",
 		"/C/Users/Michał/Desktop/github/workFlow/app/services/userService/lib/userService.js",
@@ -346,13 +347,7 @@
 		"/C/Users/Michał/Desktop/github/modul-20/package.json",
 		"/C/Users/Michał/Desktop/github/modul-20/src/reducers/countries-reducer.js",
 		"/D/utilities/xampp/htdocs/montenero/wp-config.php",
-		"/D/utilities/xampp/htdocs/montenero/dump/index.php",
-		"/D/utilities/xampp/htdocs/montenero/dump/atole44_montenero.sql",
-		"/C/Users/Michał/Downloads/montenero/atole44_montenero.sql",
-		"/C/Users/Michał/Downloads/bigdump/bigdump.php",
-		"/C/Users/Michał/Downloads/atole44_montenero.sql",
-		"/D/utilities/xampp/htdocs/carousel_son.php",
-		"/D/utilities/xampp/htdocs/carousel_father.php"
+		"/D/utilities/xampp/htdocs/montenero/dump/index.php"
 	],
 	"find":
 	{
@@ -370,6 +365,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"utf8mb4_unicode_520_ci",
+			"ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;",
+			";\n",
+			"ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;",
 			"http://",
 			"max-wid",
 			"min-width",
@@ -418,7 +417,7 @@
 		"replace_history":
 		[
 		],
-		"reverse": true,
+		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -427,38 +426,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/router/globalRouter.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2068,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -539,7 +508,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 204.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
