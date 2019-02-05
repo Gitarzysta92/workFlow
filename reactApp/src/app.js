@@ -1,7 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './containers/main/main';
-import 'bootstrap/dist/css/bootstrap.css';
+import Style from './assets/scss/main.scss';
 
 
 ReactDOM.render(

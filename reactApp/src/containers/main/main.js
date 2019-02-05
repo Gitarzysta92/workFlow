@@ -14,8 +14,6 @@ class Main extends React.Component {
 	render() {
 		return (
 			<main className={'main-container'}>
-				<Header/>
-				<Jumbotron/>
 				<Form/>
 			</main>
 		)
