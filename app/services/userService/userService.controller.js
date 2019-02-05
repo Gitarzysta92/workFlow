@@ -14,9 +14,8 @@ const sessionsHandler = new SessionsHandler();
 //
 // User services
 function getUser(req, res, next) {
-
-	service.getUser(req.params.name).then(userData => {
-		res.send(userData)
+	service.getUser(req.params.username).then(userData => {
+		res.send(userData);
 	});
 }
 
@@ -35,12 +34,13 @@ function authenticateUser(req, res, next) {
 		const sessionExists = sessionsHandler.getSession({name: user.username});
 
 		if (sessionExists) {
-			res.send(sessionExists.token);
+			res.send({token: sessionExists.token});
 			return;
 		}
 		// TO DO: Setup admin to user session handler
 		const userSession = sessionsHandler.createSession(user);
-		res.send(userSession.token);
+
+		res.send({token: userSession.token});
 	}).catch(err => next(err));
 }
 

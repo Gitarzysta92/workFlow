@@ -30,12 +30,7 @@ async function authenticateUser({username, password}) {
 	const database = await db;
 	const stored = await database.getSingle(userCollection, {username});
 
-	if (!stored) {
-		throw Error('Given user is not registered');
-		return;
-	}
-
-	if (stored.username && compare(stored.password, password)) {
+	if (stored && compare(stored.password, password)) {
 		return stored;
 	} else {
 		throw new Error('Invalid login or password');

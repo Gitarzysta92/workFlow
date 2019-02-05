@@ -45,6 +45,7 @@ class MainController {
 					next(err);
 				}
 			}
+			//console.log(this.requestsLog)
 		}.bind(this);
 	}
 }

@@ -2,9 +2,10 @@ const path = require('path'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
 	OptimizeJsPlugin = require('optimize-js-plugin');
 
+
 const plugins = [
 	new HtmlWebpackPlugin({
-		template: 'client/index.html',
+		template: './client/source/index.html',
 		filename: 'index.html',
 		inject: 'body'
 	})
@@ -25,25 +26,24 @@ module.exports = (env) => {
 	}
 	return {
 		mode: environment,
-		entry: ["babel-polyfill", './client/index.js'],
+		entry: './client/source/app.js',
 		output: {
-			path: path.resolve(__dirname, 'public'),
+			path: path.resolve(__dirname, 'client/distribution'),
 			filename: 'app.bundle.js'
 		},
 		optimization: {
 			minimize: minimize,	
 		},
 		plugins: plugins,
-		devServer: {
-			proxy: {
-				'/api': 'http://localhost:3000'
-			}
-		},
 		module: {
 			rules: [
 				{
 					test: /\.js$/,
+					//exclude
 					loader: 'babel-loader',
+					//include
+					//loader
+					//rules
 					options: {
 						plugins: env !== 'production' ? ["react-hot-loader/babel"] : []
 					}
@@ -51,13 +51,52 @@ module.exports = (env) => {
 				{
 					test: /\.css$/,
 					use: [
-						{ loader: 'style-loader' },
+						{ 
+							loader: 'style-loader' 
+						},
 						{
 							loader: 'css-loader',
 							options: {
-								modules: true
+								modules: false,
+								sourceMap: true
 							}
 						}
+					]	
+				},
+				{
+					test: /\.scss$/,
+					use: [
+						{ 
+							loader: 'style-loader' 
+						},
+						{
+							loader: 'css-loader',
+							options: {
+								modules: false,
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true
+							}
+						}
+					]
+				},
+				{
+					test: /\.(png|jpg|gif)$/,
+					use: [
+							{
+								loader: 'file-loader',
+								options: {
+									name: '[name].[ext]',
+									context: path.resolve(__dirname, 'client/source/images'),
+									outputPath: 'dist/',
+									publicPath: 'src/public/',
+									useRelativePath: false
+								}
+							}
 					]
 				}
 			]

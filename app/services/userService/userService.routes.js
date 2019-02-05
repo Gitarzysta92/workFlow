@@ -13,12 +13,21 @@ const service = require('./userService.controller.js').methods;
 
 // Private
 const routes = [
+	{	
+		// Not implemented
+		name: 'get-users',
+		type: 'get',
+		access: 'administrator',
+		hook: 'execution',
+		endpoint: '/user',
+		controller: service.getUser
+	},
 	{
 		name: 'get-user',
 		type: 'get',
 		access: 'administrator',
 		hook: 'execution',
-		endpoint: '/user/:id',
+		endpoint: '/user/:username',
 		controller: service.getUser
 	},
 	{
