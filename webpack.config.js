@@ -26,7 +26,7 @@ module.exports = (env) => {
 	}
 	return {
 		mode: environment,
-		entry: './client/source/app.js',
+		entry: './client/source/index.js',
 		output: {
 			path: path.resolve(__dirname, 'client/distribution'),
 			filename: 'app.bundle.js'
