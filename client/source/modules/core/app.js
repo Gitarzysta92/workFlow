@@ -3,7 +3,7 @@ import ReactDOM  from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { hot } from 'react-hot-loader';
 
-import { SecretRoute } from '../authorization/auth';
+import { SecretRoute, Authorizer } from '../authorization/auth';
 import { CooBoard } from '../cooboard/board';
 
 
@@ -35,14 +35,15 @@ const City = () => (
 
 
 class App extends Component {
-	constructor() {
+	constructor(props) {
+		super(props);
 		this.state = {
 			user: {}
-		}
+		};
 	}
 
 	updateUser() {
-		setState
+		//setState
 	}
 
 	render() {
@@ -50,13 +51,14 @@ class App extends Component {
 			<div>
 				<ul>
 					<li><Link to="/">Home</Link></li>
+					<li><Link to="/register">Register</Link></li>
 					<li><Link to="/airports">Airports</Link></li>
 					<li><Link to="/cities">Cities</Link></li>
 				</ul>
-
-		<SecretRoute user={user} path="/" exact component={CooBoard}/>
-		<Route path="/airports" component={Airport}/>
-		<Route path="/cities" component={City}/>
+				<Authorizer/>
+				<SecretRoute user={this.state.user} path="/" exact component={CooBoard}/>
+				<SecretRoute user={this.state.user} path="/airports" component={Airport}/>
+				<Route path="/cities" component={City}/>
 			</div>
 		);
 	}

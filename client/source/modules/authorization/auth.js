@@ -1,38 +1,71 @@
 import React from 'react';
-import style from './style.scss';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+
+import Login from './login';
+import Register from './register';
 
 
+const SecretRoute = ({ component: Component, ...rest }) => (
+	<Route {...rest} render={(props) => (
+		AuthService.isAuthenticated === true
+			? <Component {...props} />
+			: <Redirect to={{
+					pathname: '/login',
+					state: { from: props.location }
+				}} />
+	)} />
+);
 
 
-class Jumbotron extends React.Component {
+const AuthService = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
+  },
+  logout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
+
+
+const credentials = {
+	username: 'root@root.pl',
+	password: 'root'
+}
+
+
+class Authorizer extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		}
+	}
+
+	authorize = givenCredentials => {
+		return true;
+	}
 
 	render() {
 		return (
-			<div className={'container-fluid'}>
-				<div className={'row'}>
-					<div className={'col-6 tips-container'}>
-						<h1>{'Proin lacus elit, luctus non tempor'}</h1>
-					</div>
-					<div className={'col-6 login-container'}>
-						<form className={'form-signin'}>
-							<img className={'mb-4'} src={''} alt={''}/>
-							<h2>{'Hello '}<span>{'again!'}</span></h2>
-							<label htmlFor={'inputEmail'} className={'sr-only'}></label>
-							<input type={'email'} id={'inputEmail'} className={'form-control'} placeholder={'Email address'} required={''}/>
-							<label htmlFor={'inputPassword'} className={'sr-only'}></label>
-							<input type={'password'} id={'inputPassword'} className={'form-control'} placeholder={'Password'} required={''}/>
-							<div className={'signin-approval'}>
-								<small>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pharetra id neque at eleifend.'}</small>
-							</div>
-							<button className={'btn btn-lg btn-primary btn-block'} type={'submit'}>{'Sign in'}</button>
-							<p className={'mt-5 mb-3 text-muted'}>{'© 2017-2018'}</p>
-						</form>
-					</div>
-				</div>
+			<div>
+				<Route path="/login"
+					render={(routeProps) => (
+						<Login 
+							{...routeProps} 
+							authorization={asd}
+						/>
+					)}
+				/>
+				<Route path="/register" component={Register}/>
 			</div>
-
-		)
+		);
 	}
 }
 
-export default Jumbotron;
+export {
+	SecretRoute,
+	Authorizer
+};
