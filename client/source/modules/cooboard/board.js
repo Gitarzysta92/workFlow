@@ -5,7 +5,11 @@ import React from 'react';
 class CooBoard extends React.Component {
 
 	render() {
-		return;
+		return (
+			<div>
+			{'CooBoard'}
+			</div>
+		);
 	}
 }
 

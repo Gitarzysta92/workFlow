@@ -35,6 +35,9 @@ module.exports = (env) => {
 			minimize: minimize,	
 		},
 		plugins: plugins,
+		devServer: {
+				historyApiFallback: true,
+			},
 		module: {
 			rules: [
 				{

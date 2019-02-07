@@ -3,7 +3,7 @@ import ReactDOM  from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { hot } from 'react-hot-loader';
 
-import { SecretRoute, Authorizer } from '../authorization/auth';
+import { AuthRoute, Authorizer } from '../authorization/auth';
 import { CooBoard } from '../cooboard/board';
 
 
@@ -50,14 +50,15 @@ class App extends Component {
 		return (
 			<div>
 				<ul>
-					<li><Link to="/">Home</Link></li>
+					<li><Link to="/board">CooBoard</Link></li>
 					<li><Link to="/register">Register</Link></li>
 					<li><Link to="/airports">Airports</Link></li>
 					<li><Link to="/cities">Cities</Link></li>
+					<li><Link to="/logout">Logout</Link></li>
 				</ul>
 				<Authorizer/>
-				<SecretRoute user={this.state.user} path="/" exact component={CooBoard}/>
-				<SecretRoute user={this.state.user} path="/airports" component={Airport}/>
+				<AuthRoute user={this.state.user} path="/board" exact component={CooBoard}/>
+				<AuthRoute user={this.state.user} path="/airports" component={Airport}/>
 				<Route path="/cities" component={City}/>
 			</div>
 		);

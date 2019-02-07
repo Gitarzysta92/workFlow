@@ -3,31 +3,9 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 
 import Login from './login';
 import Register from './register';
+import Logout from './logout';
 
-
-const SecretRoute = ({ component: Component, ...rest }) => (
-	<Route {...rest} render={(props) => (
-		AuthService.isAuthenticated === true
-			? <Component {...props} />
-			: <Redirect to={{
-					pathname: '/login',
-					state: { from: props.location }
-				}} />
-	)} />
-);
-
-
-const AuthService = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  logout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
+import AuthRouter from './auth-route';
 
 
 const credentials = {
@@ -35,17 +13,39 @@ const credentials = {
 	password: 'root'
 }
 
+const authRouter = new AuthRouter();
+const AuthRoute = authRouter.route; 
+
 
 class Authorizer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			user: {}
 		}
 	}
 
-	authorize = givenCredentials => {
-		return true;
+	authorize = ({email, password}) => {
+		if (credentials.username === email && credentials.password === password) {
+			this.setState({user: credentials});
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	unAuthorize = () => {
+		const authorized = this.state.user.hasOwnProperty('username');
+
+		if (authorized) {
+			this.setState({user: {}})	
+		}
+		
+	}
+
+	componentDidUpdate() {
+		const authorized = this.state.user.hasOwnProperty('username');
+		authRouter.update(authorized);
 	}
 
 	render() {
@@ -55,17 +55,23 @@ class Authorizer extends React.Component {
 					render={(routeProps) => (
 						<Login 
 							{...routeProps} 
-							authorization={asd}
+							authorization={this.authorize}
 						/>
 					)}
 				/>
+				<Route path="/logout"
+					render={(routeProps) => (
+						<Logout
+							{...routeProps} 
+							unAuthorization={this.unAuthorize}
+							redirect={'/login'}
+						/>
+					)}
+				 />
 				<Route path="/register" component={Register}/>
 			</div>
 		);
 	}
 }
 
-export {
-	SecretRoute,
-	Authorizer
-};
+export { Authorizer,  AuthRoute };

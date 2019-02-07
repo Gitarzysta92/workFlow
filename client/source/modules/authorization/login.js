@@ -19,8 +19,8 @@ class Login extends React.Component {
 		result ? this.setState({submitStatus: true}) : this.throwError(result);
 	}
 
-	throwError() {
-		this.setState({submitStatus: new Error(result)})
+	throwError(errMessage) {
+		this.setState({submitStatus: new Error(errMessage)})
 	}
 
 	render() {
