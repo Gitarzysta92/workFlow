@@ -5,6 +5,19 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+
+function test() {
+  console.log('asd');
+}
+
+test();asdasd
+
+(function() {
+  const date = new Date();
+
+  console.log('asas'date);
+})();
+
 function getCookie(cname) {
   var name = cname + "=";
   var ca = document.cookie.split(';');
@@ -29,5 +42,23 @@ function checkCookie() {
     if (user != "" && user != null) {
       setCookie("username", user, 365);
     }
+  }
+}
+
+
+class SessionCookie {
+  constructor(name, ...data) {
+    this.name = name;
+  }
+
+  setCookie() {
+    const date = new Date()
+  }
+
+  setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 }
