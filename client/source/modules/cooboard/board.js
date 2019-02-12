@@ -13,4 +13,22 @@ class CooBoard extends React.Component {
 	}
 }
 
-export { CooBoard };
+
+const module = {
+	name: 'CooBoard',
+	component: CooBoard,
+	mountPath: '/cooboard',
+	api: [
+		{
+			id: 'addActivity',
+			mountPath: '/'
+		},
+		{
+			id: 'addActivity',
+			mountPath: '/'
+		}
+	]
+}
+
+
+export default module;

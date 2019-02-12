@@ -2,7 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import style from './style.scss';
-import LoginForm from './components/login-form'
+import LoginForm from './components/login-form';
+import LoginPage from './components/login-page';
 
 const policy = `asdasd`;
 
@@ -33,11 +34,11 @@ class Login extends React.Component {
 			
 		}
 		return (
-			<div>
+			<LoginPage>
 				<h2>{'Hello '}<span>{'again!'}</span></h2>
 				<LoginForm onSubmit={this.submitHandler} policy={policy}/>
 				<p className={'mt-5 mb-3 text-muted'}>{'© 2017-2018'}</p>
-			</div>
+			</LoginPage>
 		)
 	}
 }

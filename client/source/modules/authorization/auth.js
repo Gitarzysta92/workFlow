@@ -68,7 +68,7 @@ class Authorizer extends React.Component {
 						/>
 					)}
 				 />
-				<Route path="/register" component={Register}/>
+				<Route exact path="/register" component={Register}/>
 			</div>
 		);
 	}

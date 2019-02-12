@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import style from './main.scss';
-import Header from '../header/header';
-import Jumbotron from '../jumbotron/jumbotron';
-import Form from '../login-form/form';
 import { hot } from 'react-hot-loader';
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { LeftBar, MainContainer, RightBar } from './components/layout';
+
+
+import imported from './modules';
+import MainMenu from './components/main-menu';
+
 
 class Main extends Component {
 	constructor(props) {
@@ -11,10 +15,31 @@ class Main extends Component {
 		this.state = {};
 	}
 
+
+	services = () => {
+		const routes = imported.modules.map(current => {
+			console.log(this.props.match.url + current.mountPath);
+			return <Route key={current.name} path={this.props.match.url + current.mountPath} component={current.component}/>
+		});
+		return routes;
+	}
+
 	render() {
 		return (
 			<main className={'main-container'}>
-				<Form/>
+				<div className="row">
+					<LeftBar>
+						<MainMenu basePath={this.props.match.url} items={imported.modules}/>
+					</LeftBar>
+
+					<MainContainer>
+						{this.services()}
+					</MainContainer>
+
+					<RightBar>
+						{'asdasdasdasd'}
+					</RightBar>
+				</div>
 			</main>
 		)
 	}
