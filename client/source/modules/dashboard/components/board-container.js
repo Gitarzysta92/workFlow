@@ -1,9 +1,11 @@
 import React from 'react';
 
-const BoardContainer = () => {
-	<div className="container">
-		{'this.props.children'}
-	</div>
+const BoardContainer = (props) => {
+	return (
+		<div className="container">
+			{props.children}
+		</div>
+	)
 }
 
 export default BoardContainer;

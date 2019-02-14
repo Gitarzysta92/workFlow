@@ -2,24 +2,43 @@ import React, { Component } from 'react';
 import ReactDOM  from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { hot } from 'react-hot-loader';
+import style from './style.scss';
 
+import NewsContainer from './news-container';
 import BoardContainer from './components/board-container';
 
-import Pinned from './components/pinned';
-import News from './components/news-feed';
 
-const dashBoardModel = [
+
+const newsModel = [
 	{
-		id: 1,
 		content: {
-			title:
-			message: 
+			title: 'Sample data',
+			message: 'Lorem ipsum sit dolor'
+		},
+		meta: {
+			id: 1,
+			type: 'article',
+			category: 'default',
+			authorId: 12,
+			publishDate: new Date,
+			comments: true,
+			isPinned: true
 		}
-		type: 'article',
-		layout: 'full-width',
-		authorId: 12, 
-		date: new Date,
-		category: 'default'
+	},
+	{
+		content: {
+			title: 'Sample data',
+			message: 'Lorem ipsum sit dolor'
+		},
+		meta: {
+			id: 2,
+			type: 'article',
+			category: 'default',
+			authorId: 12, 
+			publishDate: new Date,
+			comments: true,
+			isPinned: true
+		}
 	}
 ]
 
@@ -39,8 +58,7 @@ class DashBoard extends Component {
 	render() {
 		return (
 			<BoardContainer>
-				<Pinned/>
-				<News/>
+				<NewsContainer data={newsModel}/>
 			</BoardContainer>
 		);
 	}
