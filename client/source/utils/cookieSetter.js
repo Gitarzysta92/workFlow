@@ -1,9 +1,9 @@
 
 
 class Cookie {
-	constructor(name, value) {
+	constructor(name) {
 		this.name = name;
-		this.value = value;
+		this.value = 'default';
 		this.dateOffset = new Date().getTimezoneOffset();
 		this.expiredDate = new Date();
 	}
@@ -12,45 +12,33 @@ class Cookie {
 		const date = new Date();
 		date.setTime(date.getTime() + (exTime * 60 * 1000) - (this.dateOffset * 60 * 1000));
 		const expires = "expires="+date.toUTCString();
-		//document.cookie = this.name + "=" + this.value + ";" + expires + ";path=/";
-		//return this.name + "=" + this.value + ";" + expires + ";path=/";
-		console.log(this.name + "=" + this.value + ";" + expires + ";path=/");
+		console.log('Cookie ' + this.name + ' has been set');
+		document.cookie = this.name + "=" + this.value + ";" + expires + ";path=/";
 	}
 
-	get remove() {
-		return true;
+	remove() {
+		document.cookie = this.name + "=" + this.value + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 	}
 
-	checkCookie() {
-		var name = cname + "=";
-		var ca = document.cookie.split(';');
-			for(var i = 0; i < ca.length; i++) {
-				var c = ca[i];
-				while (c.charAt(0) == ' ') {
-					c = c.substring(1);
+	get data() {
+		const name = this.name + "=";
+		const cookiesList = document.cookie.split(';');
+			for (let i = 0; i < cookiesList.length; i++) {
+				const cookie = cookiesList[i];
+
+				// remove space
+				while (cookie.charAt(0) == ' ') {
+					cookie = cookie.substring(1);
 				}
-				if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
+
+				// TO DO: refactor 
+				// should check value with instance value property
+				if (cookie.indexOf(name) == 0) {	
+					return cookie.split('=')[1];
 				}
 			}
 			return "";
 	}
-
-	checkCookie() {
-		var user = getCookie("username");
-		if (user != "") {
-			alert("Welcome again " + user);
-		} else {
-			user = prompt("Please enter your name:", "");
-			if (user != "" && user != null) {
-				setCookie("username", user, 365);
-			}
-		}
-
-	}
 }
 
-const cookie = new Cookie('text-cookie','dataHandler');
-cookie.add = 3;
-
-
+export default Cookie;

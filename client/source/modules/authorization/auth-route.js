@@ -8,7 +8,7 @@ class AuthRouter {
 		this.isAuthenticated = false;
 	}
 
-	update(state) {
+	access(state) {
 		this.isAuthenticated = state;
 	}
 
