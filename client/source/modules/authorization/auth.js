@@ -79,7 +79,7 @@ class Authorizer extends React.Component {
 		}	
 	}
 
-	// Check is user is authorized
+	// Check if user is authorized
 	// and set route access
 	setupRouter() {
 		const authorized = this.state.user.hasOwnProperty('username');
