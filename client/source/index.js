@@ -2,25 +2,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-// import main application module
-import App from './modules/core/app';
+// import application main module
+import App from './app';
 
-// import app actions store
-import Store from './modules/flux/store-provider';
+// import global reducer
+import reducer from './globalReducer';
 
 // import major css styles
 import 'bootstrap/dist/css/bootstrap.css';
 import Style from './assets/scss/main.scss';
 
 
+const store = createStore(reducer);
 
 ReactDOM.render(
-	<Store>
+	<Provider store={store}>
 		<Router>
 			<App />
 		</Router>
-	</Store>,
+	</Provider>,
 	document.getElementById('app')
 );
 

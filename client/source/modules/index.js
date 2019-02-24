@@ -1,18 +1,67 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import Main from './containers/main/main';
-import App from './modules/core/app';
-import Style from './assets/scss/main.scss';
+import { authorization } from './authorization';
+import { cooboard } from './cooboard';
+
+
+const importedModules = [authorization, cooboard]
+
+const moduleMoodel = {
+	name: 'isString',
+	component: 'isReactComponent',
+	mountPath: 'isStringWithDesiredPattern',
+	reducer: 'isFunction'
+	api: 'isArrayWithElementsDesiredPattern'
+}
+
+
+class Modules {
+	constructor() {
+		this._reducers = [];
+	}
+
+	set lib(importedModules) {
+
+	}
+
+	get reducers() {
+		return this._reducers;
+	}
+
+	_validateModule() {
+
+	}
+ }
+
+
+const modules = new Modules();
+modules.lib = importedModules;
 
 
 
-ReactDOM.render(
-	<Router>
-		<App />
-	</Router>,
-	document.getElementById('app')
-);
+class ModuleWrapper {
+	constructor() {
+		
+	}
+}
 
 
+export { reducers }
+
+
+
+
+
+/*
+const reducer = (state = [], action) => {
+	switch(action.type) {
+		case ADD_COMMENT:
+			return [{
+				id: action.id,
+				text: action.text,
+				votes: 0
+			}
+		, ...state]
+		defaut:
+			return state;
+	}
+} 
+*/

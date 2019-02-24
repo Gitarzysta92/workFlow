@@ -1,3 +1,5 @@
+/*
+
 import fetch from 'isomorphic-fetch';
 import Config from '../../server/config';
 
@@ -24,3 +26,9 @@ export default function callApi(endpoint, method = 'get', body) {
     error => error
   );
 }
+
+
+*/
+const asd = 'asd';
+
+export default { asd }
