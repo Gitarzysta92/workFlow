@@ -2,20 +2,10 @@ import Auth from './auth';
 
 
 const module = {
-	name: 'CooBoard',
+	name: 'authorization',
 	component: Auth,
-	mountPath: '/cooboard',
-	api: [
-		{
-			id: 'addActivity',
-			mountPath: '/'
-		},
-		{
-			id: 'addActivity',
-			mountPath: '/'
-		}
-	]
+	mountPath: '/cooboard'
 }
 
-export
+export default module
 

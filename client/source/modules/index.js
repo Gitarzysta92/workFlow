@@ -1,8 +1,8 @@
 import { authorization } from './authorization';
-import { cooboard } from './cooboard';
+//import { cooboard } from './cooboard';
 
 
-const importedModules = [authorization, cooboard]
+const importedModules = [authorization];
 
 const moduleMoodel = {
 	name: 'isString',
@@ -44,7 +44,7 @@ class ModuleWrapper {
 }
 
 
-export { reducers }
+export { reducers: modules.reducers }
 
 
 
