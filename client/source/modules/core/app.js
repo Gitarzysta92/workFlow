@@ -14,7 +14,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: {}
+			user: this.props.user
 		};
 		this.appPath = '/app';
 		this.entryPath = '/app/dashboard';
