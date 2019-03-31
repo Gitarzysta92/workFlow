@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM  from 'react-dom';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 
-import { hot } from 'react-hot-loader';
 
 
 import Main from './main';
@@ -38,4 +37,4 @@ class App extends Component {
 
 
 
-export default hot(module)(App);
+export default App;

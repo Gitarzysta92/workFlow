@@ -48,7 +48,7 @@ class Authorizer extends React.Component {
 	}
 
 	// Look for existing session
-	// if exists get user data and set routes access
+	// if session exists get user data and set routes access
 	_isSessionExists() {
 		if (this.cookie.data === sessionToken.id) {
 			this.state.user = credentials;

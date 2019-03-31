@@ -1,14 +1,14 @@
 import Module from '../module';
-import { Authorizer, AuthRoute } from './auth';
+import Board from './board';
 import Reducer from './flux/reducer';
 
 
 const module = new Module({
-	name: 'authorization',
-	component: Authorizer,
+	name: 'cooboard',
+	component: Board,
 	mountPath: '/cooboard',
 	reducer: Reducer,
-	api: AuthRoute
+	api: ''
 })
 
 export default module;

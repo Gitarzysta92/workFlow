@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+
+import Modules from './modules';
 
 // import utilities
 import apiCaller from './utils/apiCaller';
 
+
+const AppContext = React.createContext({});
+const Core = Modules.getModule('Core', 'component');
+
 class App extends Component {
 	render() {
-		return (
-			
-		);
+		return (	
+			<AppContext.Provider value={'state'}>
+				<Core/>
+			</AppContext.Provider>
+		)
 	}
 }
 
-
-
-export default hot(module)(App);
+export default App;
