@@ -2,7 +2,7 @@ import { userService } from '../../lib/user-service';
 import { actionName } from '../_constants/user.constants';
 
 
-export const authActions = {
+export const userActions = {
 	login,
 	logout,
 	register

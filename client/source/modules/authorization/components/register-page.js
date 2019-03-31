@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from './login-form';
+import RegisterForm from './register-form';
 import style from './style.scss';
 
 const LoginPage = (props) => {
@@ -12,7 +12,7 @@ const LoginPage = (props) => {
 				<div className={'col-6 login-container'}>
 					<div>
 						<h2>{'Hello '}<span>{'stranger!'}</span></h2>
-						<LoginForm onSubmit={this.props.submitHandler} policy={policy}/>
+						<RegisterForm onSubmit={this.props.submitHandler} policy={policy}/>
 						<p className={'mt-5 mb-3 text-muted'}>{'© 2017-2018'}</p>
 					</div>
 				</div>
