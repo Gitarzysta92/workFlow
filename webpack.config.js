@@ -38,6 +38,13 @@ module.exports = (env) => {
 		devServer: {
 				historyApiFallback: true,
 			},
+		resolve: {
+			alias: {
+				App$: path.resolve(__dirname, 'client/source/app.js'),
+				Utils$: path.resolve(__dirname, 'client/source/utils'),
+				Constants$: path.resolve(__dirname, 'client/source/constants')
+			}
+		},
 		module: {
 			rules: [
 				{

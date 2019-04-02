@@ -11,22 +11,24 @@ export const userActions = {
 function login(username, password) {
 	return dispatch => {
 		dispatch(request({ username }));
+	
+
+		userService.login(username, password)
+			.then(
+				user => {
+					dispatch(success(user));
+				}	
+			).catch(
+				error => {
+					dispatch(failure(error.toString()));
+			})
+
+
+		function request(user) { return { type: actionName.LOGIN_REQUEST, user } };
+		function success(user) { return { type: actionName.LOGIN_SUCCESS, user } };
+		function failure(error) { return { type: actionName.LOGIN_FAILURE, error } };
 	}
 
-	userService.login(username, password)
-		.then(
-			user => {
-				dispatch(success(user));
-			}
-			error => {
-				dispatch(failure(error.toString()));
-			}
-		)
-
-
-	function request(user) { return { type: actionName.LOGIN_REQUEST, user } };
-	function success(user) { return { type: actionName.LOGIN_SUCCESS, user } };
-	function failure(user) { return { type: actionName.LOGIN_FAILURE, error } };
 }
 
 

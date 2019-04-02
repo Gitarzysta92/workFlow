@@ -1,8 +1,8 @@
 import React from 'react';
-import style from './style.scss';
+import { connect } from 'react-redux';
+import { userActions } from '../redux/_actions';
 
-import RegisterForm from './components/register-form';
-import RegisterPage from './components/login-page';
+import LoginPage from '../components/register-page';
 
 
 class Register extends React.Component {
@@ -25,4 +25,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export {Register};

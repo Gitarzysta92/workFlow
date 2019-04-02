@@ -2,9 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 
-const Logout = ({unAuthorization, redirect}) => {
-
-	unAuthorization();
+const Logout = () => {
 	return (
 		<div className={'signin-approval'}>
 			<Redirect to={{ pathname: '/login'}} />
@@ -13,4 +11,5 @@ const Logout = ({unAuthorization, redirect}) => {
 	);
 }
 		
-export default Logout;
+
+export { Logout };

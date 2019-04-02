@@ -31,10 +31,10 @@ function authenticateUser(req, res, next) {
 			return;
 		}
 
-		const sessionExists = sessionsHandler.getSession({name: user.username});
+		const session = sessionsHandler.getSession({name: user.username});
 
-		if (sessionExists) {
-			res.send({token: sessionExists.token});
+		if (session) {
+			res.send({token: session.token});
 			return;
 		}
 		// TO DO: Setup admin to user session handler
@@ -45,9 +45,9 @@ function authenticateUser(req, res, next) {
 }
 
 
-//
+// Middleware
 // User sessions
-// check is users sesssion had be created
+// check is users session had be created
 // if is, bind session to request
 function bindSession(req, res, next) {
 	const userToken = req.headers.hasOwnProperty('session-token');

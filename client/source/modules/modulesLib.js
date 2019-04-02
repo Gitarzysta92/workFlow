@@ -7,12 +7,14 @@ export const Modules = {
 		return this.lib;
 	},
 	get reducers() {
-		return this.lib.map(current => current.reducer);
+		return this.lib.reduce((acc, current) => 
+			[...acc, ...(Array.isArray(current.reducer) ? [...current.reducer] : [current.reducer])]
+			, []);
 	},
 	getModule(moduleName, property) {
 		const module = this.lib.find(current => moduleName === current.name);
 		if (!module) {
-			throw Err('Invaild module name')
+			throw Error('Invaild module name')
 			return;
 		}
 		return property ? module[property] : module;

@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterForm from './register-form';
-import style from './style.scss';
+import style from './style/style.scss';
 
 const LoginPage = (props) => {
 	return (

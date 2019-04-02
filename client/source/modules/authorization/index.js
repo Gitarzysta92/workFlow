@@ -1,14 +1,16 @@
 import Module from '../module';
-import { Authorizer, AuthRoute } from './auth';
-import Reducer from './flux/reducer';
+import Authorizer from './auth';
+import * as Reducers from './redux/_reducers';
 
 
+// Object.entries(Reducers).map(reducer => Object.fromEntries([reducer]))
+// Object.fromEntries(Object.entries(Reducers))
 const module = new Module({
 	name: 'authorization',
 	component: Authorizer,
-	mountPath: '/cooboard',
-	reducer: Reducer,
-	api: AuthRoute
+	mountPath: '/authorization',
+	reducer: Object.entries(Reducers).map(reducer => Object.fromEntries([reducer])),
+	api: ''
 })
 
 export default module;

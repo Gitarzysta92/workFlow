@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 
 
 import Main from './main';
-import { Authorizer, AuthRoute } from '../authorization/auth';
 
 
 
-class App extends Component {
+
+class Core extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -27,8 +27,6 @@ class App extends Component {
 		return (
 			<div>
 				<Route exact path='/' render={() => ( <Redirect to={this.entryPath}/> )}/>
-				<AuthRoute user={this.state.user} path={this.appPath} component={Main}/>
-				<Authorizer/>
 			</div>
 		);
 	}
@@ -37,4 +35,4 @@ class App extends Component {
 
 
 
-export default App;
+export default Core;
