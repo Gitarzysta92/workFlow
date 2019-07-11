@@ -8,23 +8,16 @@ class UserSession {
 		this.initDate = Date.now();
 		this.expiryDate = this.initDate;
 		this.userToken = {
-			//token_id: uniqueId(10),
-			token_id: 'token',
+			token_id: uniqueId(10),
 			exp_date: this.expiryDate
 		}
-		this.token = this.userToken.token_id; 
 		this.registerAuthToken();
+		//this.expiry();
 	}
 
-
-	getToken() {
-		this.expiry();
-		return this.userToken;
+	get token() {
+		return this.userToken.token_id;
 	}
-
-	//get token() {
-		//return this.userToken.token_id;
-	//}
 
 	expiry() {
 		this.timer = setInterval(() => {

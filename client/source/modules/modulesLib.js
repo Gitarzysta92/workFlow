@@ -11,13 +11,24 @@ export const Modules = {
 			[...acc, ...(Array.isArray(current.reducer) ? [...current.reducer] : [current.reducer])]
 			, []);
 	},
-	getModule(moduleName, property) {
+	getModule(moduleName, propQuery) {
 		const module = this.lib.find(current => moduleName === current.name);
 		if (!module) {
-			throw Error('Invaild module name')
+			throw Error('Invaild module name ' + moduleName)
 			return;
 		}
-		return property ? module[property] : module;
+		return propQuery ? module[propQuery] : module;
+	},
+
+	getModules(...propQuery) {
+		return this.lib.map(mod => {
+			const result = propQuery.reduce(
+				(acc, prop) => Object.assign(acc, {
+					[prop]: mod[prop]	
+				}) 
+			,{})
+			return {name: mod.name, ...result}
+		})
 	}
 }
 

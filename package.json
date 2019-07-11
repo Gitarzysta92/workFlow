@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "db": "C:\\\"Program Files\"\\MongoDB\\Server\\4.0\\bin\\mongod.exe --dbpath=\"d:\\work\\mongoDB\\user\"",
-    "server": "nodemon --watch app --watch server --watch configs --inspect index.js",
+    "server": "nodemon --watch app --inspect index.js",
     "app": "npm-run-all --parallel db server",
-    "start": "webpack-dev-server --hot --env development"
+    "client": "webpack-dev-server --hot --env development"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "save-dev": "^2.0.0",
-    "socket.io": "^2.1.1",
+    "socket.io": "^2.2.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

@@ -19,45 +19,68 @@ function getUser(req, res, next) {
 	});
 }
 
+
 function registerUser(req, res, next) {
-	service.registerUser(req.body).then(result => res.send(result));
+	service.registerUser(req.body).then(result => res.send(result))
+		.catch(err => next(err));
 }
+
 
 function authenticateUser(req, res, next) {
 	service.authenticateUser(req.body).then(user => {
-
-		if (!user) {
-			throw new Error('User not mached');
-			return;
-		}
-
 		const session = sessionsHandler.getSession({name: user.username});
-
 		if (session) {
 			res.send({token: session.token});
 			return;
 		}
 		// TO DO: Setup admin to user session handler
 		const userSession = sessionsHandler.createSession(user);
-
+		console.log(userSession);
 		res.send({token: userSession.token});
 	}).catch(err => next(err));
+}
+
+
+function getAuthenticatedUserData(req, res, next) {
+	const session = req.userSession || false;
+	if (!session) {
+		const err = new Error('User not authenticated');
+		next(err)
+	}
+	service.getMetaData(session.username).then(result => res.send(result))
+		.catch(err => next(err));
+}
+
+
+function saveToUserSession(req, res, next) {
+
+}
+
+
+function getFromUserSession(req, res, next) {
+
+}
+
+
+function endUserSession(req, res, next) {
+
 }
 
 
 // Middleware
 // User sessions
 // check is users session had be created
-// if is, bind session to request
+// if it is, bind session to request
 function bindSession(req, res, next) {
-	const userToken = req.headers.hasOwnProperty('session-token');
+	const userToken = req.headers.hasOwnProperty('token');
 	if (!userToken) {
 		// throw error -> your token is invaild
 		next();
 		return;	
 	}
-
-	const userSession = sessionsHandler.getSession({token: req.headers['session-token']});
+	const token = req.headers['token'];
+	const userSession = sessionsHandler.getSessionByToken(token);
+	console.log(req.headers['token'], sessionsHandler);
 	if (userSession) {
 		req.userSession = userSession;
 	}
@@ -76,5 +99,6 @@ module.exports.methods = {
 	getUser,
 	registerUser,
 	authenticateUser,
-	bindSession
+	bindSession,
+	getAuthenticatedUserData
 };

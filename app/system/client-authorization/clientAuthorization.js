@@ -17,7 +17,7 @@ class ClientAuthorizer {
 		this.collection = 'clientApps';
 		this.addTrustedClient({
 	 		appkey: 'rootkey',
-	 		host: 'localhost:3000'
+	 		host: 'localhost:8080'
 	 	});
 	}
 
@@ -52,7 +52,10 @@ class ClientAuthorizer {
 		// check is given apiKey has assigned client host
 		// if has not throw exception 
 		.then(token => {
+			console.log(token.host, req.headers.host)
 			if (token.host === req.headers.host) {
+
+
 				this.clientsList.push(new Client(req.headers));
 				next();
 			} else {

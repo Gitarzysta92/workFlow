@@ -19,7 +19,7 @@ class Client {
 		}
 
 		this.tresholdList.push(currentReq);
-		console.log(this.tresholdList.length);
+		//console.log(this.tresholdList.length);
 		if (this.checkTreshold()) console.log('overlimit');
 	}
 

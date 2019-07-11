@@ -24,6 +24,9 @@ class UserSessionHandler {
 				//current[query.key] === token
 		});
 	}
+	getSessionByToken(token) {
+		return this.sessions.find(current => current.token === token );
+	}
 }
 
 

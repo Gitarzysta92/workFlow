@@ -1,10 +1,11 @@
 import { Modules } from './modulesLib';
 
-import './authorization';
-//import './cooboard';
-//import './core';
-//import './dashboard';
-
+import './authentication';
+import './cooboard';
+import './dashboard';
+import './navigation';
+import './chat';
+import './userPanel';
 
 export default Modules;
 

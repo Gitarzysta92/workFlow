@@ -36,15 +36,26 @@ module.exports = (env) => {
 		},
 		plugins: plugins,
 		devServer: {
-				historyApiFallback: true,
+			historyApiFallback: true,
+			proxy: {
+				'/socket.io': {
+					target: 'http://localhost:3000',
+					ws: true
+				},
+				'/rest-api': {
+					target: 'http://localhost:3000',
+					pathRewrite: {'^/rest-api' : ''}
+				} 
 			},
+		},
 		resolve: {
 			alias: {
-				App$: path.resolve(__dirname, 'client/source/app.js'),
+				InternalApi$: path.resolve(__dirname, 'client/source/application/internal-api-provider.js'),
 				Utils$: path.resolve(__dirname, 'client/source/utils'),
 				Constants$: path.resolve(__dirname, 'client/source/constants')
 			}
 		},
+		devtool: "source-map",
 		module: {
 			rules: [
 				{

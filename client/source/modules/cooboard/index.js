@@ -1,16 +1,13 @@
 import Module from '../module';
 import Board from './board';
-import Reducer from './flux/reducer';
+//import Reducer from './flux/reducer';
+import { MOUNTPOINT } from 'Constants';
 
 
-
-
-const module = new Module({
-	name: 'cooboard',
+const module = new Module('CooBoard',{
 	component: Board,
-	mountPath: '/cooboard',
-	reducer: {cooboard: Reducer},
-	api: ''
+	mountPoint: MOUNTPOINT.main,
+	reducer: '',
 })
 
 export default module;

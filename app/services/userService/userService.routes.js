@@ -20,7 +20,7 @@ const routes = [
 		access: 'administrator',
 		hook: 'execution',
 		endpoint: '/user',
-		controller: service.getUser
+		controller: service.getAuthenticatedUserData
 	},
 	{
 		name: 'get-user',
@@ -35,7 +35,7 @@ const routes = [
 		type: 'post',
 		access: 'public',
 		hook: 'execution',
-		endpoint: '/user',
+		endpoint: '/user/register',
 		controller: service.registerUser
 	},
 	{

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { hot } from 'react-hot-loader';
 
 
-import SingleNews from './containers/single-news';
+import SingleNews from './single-news';
 
 
 class NewsFeed extends Component {

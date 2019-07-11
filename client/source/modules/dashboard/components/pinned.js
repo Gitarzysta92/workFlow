@@ -3,7 +3,7 @@ import ReactDOM  from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { hot } from 'react-hot-loader';
 
-import SingleNews from './containers/pinned-news';
+import SingleNews from './pinned-news';
 
 
 class PinnedNews extends Component {

@@ -1,14 +1,14 @@
 import Module from '../module';
+import { combineReducers } from 'redux';
+
 import DashBoard from './dashboard';
-import Reducer from './flux/reducer';
+import Reducer from './redux/reducers';
+import { MOUNTPOINT } from 'Constants';
 
-
-const module = new Module({
-	name: 'dashboard',
+const module = new Module('dashboard',{
 	component: DashBoard,
-	mountPath: '/dashboard',
+	mountPoint: MOUNTPOINT.main,
 	reducer: Reducer,
-	api: ''
 })
 
 export default module;

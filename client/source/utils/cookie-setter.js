@@ -39,6 +39,26 @@ class Cookie {
 			}
 			return "";
 	}
+
+	static getCookie(byname) {
+		const name = byname + "=";
+		const cookiesList = document.cookie.split(';');
+			for (let i = 0; i < cookiesList.length; i++) {
+				const cookie = cookiesList[i];
+
+				// remove space
+				while (cookie.charAt(0) == ' ') {
+					cookie = cookie.substring(1);
+				}
+
+				// TO DO: refactor 
+				// should check value with instance value property
+				if (cookie.indexOf(name) == 0) {	
+					return cookie.split('=')[1];
+				}
+			}
+			return "";
+	}
 }
 
 export { Cookie };

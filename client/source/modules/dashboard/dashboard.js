@@ -1,46 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM  from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { hot } from 'react-hot-loader';
-import style from './style.scss';
+import { userSession, SecureRoute, PATHS } from 'InternalApi';
+import { JoinToHoc } from 'Utils';
 
-import NewsContainer from './news-container';
+import { user } from 'InternalApi';
+import NewsContainer from './containers/news-container';
 import BoardContainer from './components/board-container';
 
 
-
-const newsModel = [
-	{
-		content: {
-			title: 'Sample data',
-			message: 'Lorem ipsum sit dolor'
-		},
-		meta: {
-			id: 1,
-			type: 'article',
-			category: 'default',
-			authorId: 12,
-			publishDate: new Date,
-			comments: true,
-			isPinned: true
-		}
-	},
-	{
-		content: {
-			title: 'Sample data',
-			message: 'Lorem ipsum sit dolor'
-		},
-		meta: {
-			id: 2,
-			type: 'article',
-			category: 'default',
-			authorId: 12, 
-			publishDate: new Date,
-			comments: true,
-			isPinned: true
-		}
-	}
-]
 
 
 class DashBoard extends Component {
@@ -56,12 +22,12 @@ class DashBoard extends Component {
 	}
 
 	render() {
+		//user.storeSession();
 		return (
-			<BoardContainer>
-				<NewsContainer data={newsModel}/>
-			</BoardContainer>
+			<SecureRoute match={this.props.match}  exact path={PATHS.Dashboard} component={NewsContainer}/>
 		);
 	}
 }
 
-export default DashBoard;
+
+export default JoinToHoc(DashBoard);

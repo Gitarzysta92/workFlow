@@ -1,0 +1,4 @@
+{
+    "name" : "files-manager",
+    "main" : "./filesManager.js"
+}
